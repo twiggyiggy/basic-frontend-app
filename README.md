@@ -1,68 +1,189 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Bozo
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+Bozo is a tool to practise quick-sketching by creating a timed practice session with your own or default images.
 
-### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## User Stories
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+-  **404:** As an anon/user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault
+-  **Signup:** As an anon I can sign up in the platform so that I can use the app to practice gesture drawing
+-  **Login:** As a user I can login to the platform so that start a practise session
+-  **Logout:** As a user I can logout from the platform so no one else can use it
+-  **Create a custom session** As a user I customise variables in a sketching session
+-  **Pause session** As a user I can pause a drawing session
+-  **Finish a session** As a user I can finish a session (and return to main)
+-  **Skip a photo** As a user I can skip a photo to move on to the next one
+-  **Upload photo** As a user I can upload my own photographs to practise with
+-  **Edit photo's category** As a user I can edit information about the photo to categorise it properly
+-  **View gallery** As a user I can see my gallery of uploaded photos
 
-### `npm test`
+<br>
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Backlog
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+User profile:
+- see my profile
+- edit my profile information
+- add a profile picture
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Gallery:
+- images are sorted by date uploaded
+- can add filter: monochrome to uploaded photos
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Sketching session:
+- user can choose whether to use own photos or default database
+- more categories: urban, landscape, animals, objects
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Other:
+- practice reminder notifications
+- keep track of progress
+- tutorials - drawing tips
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<br>
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Client / Frontend
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Routes
+| Path                      | Component            | Permissions | Behaviour                                                    |
+| ------------------------- | -------------------- | ----------- | ------------------------------------------------------------ |
+| `/`                       | SplashPage           | public      | Home page                                                    |
+| `/auth/signup`            | SignupPage           | anon only   | Signup form, link to login, navigate to homepage after signup|
+| `/auth/login`             | LoginPage            | anon only   | Login form, link to signup, navigate to homepage after login |
+| `/auth/logout`            |       n/a            | anon only   | Navigate to homepage after logout, expire session            |
+| `/setup`                  | SetupPage            | user only   | Set up practice session via form                             |
+| `/practice`               | PracticePage         | user only   | View timed practice slideshow                                |
+| `/practice/finished`      | PracticeFinishedPage | user only   | View end-of-session message, used photos                     |
+| `/gallery`                | GalleryPage          | user only   | View own uploaded photos + form to upload new ones           |
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Components
 
-### Analyzing the Bundle Size
+- LoginPage
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+- SplashPage
 
-### Making a Progressive Web App
+- SignupPage
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+- SetupPage
 
-### Advanced Configuration
+- PracticePage
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+- PracticeFinishedPage
 
-### Deployment
+- Gallery
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+- EditForm
 
-### `npm run build` fails to minify
+- Navbar
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+  
+
+ 
+
+## Services
+
+- Auth Service
+  - auth.login(user)
+  - auth.signup(user)
+  - auth.logout()
+
+- Photo Service
+  - photo.list()
+  - photo.add(id)
+  - photo.delete(id)
+  - photo.update(id)
+
+
+
+<br>
+
+
+# Server / Backend
+
+
+## Models
+
+User model
+
+```javascript
+{
+  username - String // required
+  email - String // required & unique
+  password - String // required
+  photos - [ObjectID]
+}
+```
+
+Photo model
+
+```javascript
+ {
+   imgUrl:String,
+   creator: ObjectId,
+   category: {
+     enum: ['hands', 'feet', 'faces', 'figure', 'other']
+   },
+    created: {
+    type: Date,
+    default: new Date
+  }
+ }
+```
+
+<br>
+
+
+## API Endpoints (backend routes)
+
+| HTTP Method | URL                         | Request Body                 | Success status | Error Status | Description                                                  |
+| ----------- | --------------------------- | ---------------------------- | -------------- | ------------ | ------------------------------------------------------------ |
+| GET         | /auth/profile               | Saved session                | 200            | 404          | Check if user is logged in and return profile page           |
+| POST        | /auth/signup                | {name, email, password}      | 201            | 404          | Checks if fields not empty (422) and user not exists (409), then create user with encrypted password, and store user in session |
+| POST        | /auth/login                 | {username, password}         | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session  |
+
+| POST        | /auth/logout                | (empty)                      | 204            | 400          | Logs out the user                                             |
+| GET         | /gallery                    |                              |                | 400          | Show all photos                                               |
+| POST        | /gallery/add                | {}                           | 201            | 400          | add and save a new photo                                      |
+| PUT         | /gallery/edit/:id           | {imgUrl}                     | 200            | 400          | edit information about photo                                  | ?
+| DELETE      | /gallery/delete/:id         | {id}                         | 201            | 400          | delete tournament                                             |
+
+
+<br>
+
+
+## Links
+
+### Trello/Kanban
+
+[Link to your trello board](https://trello.com/b/q96H8bHM/bozo) 
+
+### Git
+
+The url to your repository and to your deployed project
+
+[Client repository Link](https://github.com/screeeen/project-client)
+
+[Server repository Link](https://github.com/screeeen/project-server)
+
+[Deployed App Link](http://heroku.com)
+
+### Slides
+
+The url to your presentation slides
+
+[Slides Link](http://slides.com)
+
+
+
+
+
+
+
