@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import withAuth from '../components/withAuth.js';
+import Navbar from '../components/Navbar.js';
 
-class Private extends Component {
+class Setup extends Component {
 
   
 
@@ -9,9 +10,10 @@ class Private extends Component {
     return (
       <div>
         <h1>Welcome {this.props.user.username}</h1>
+        <Navbar />
       </div>
     )
   }
 }
 
-export default withAuth(Private);
+export default withAuth(Setup);
