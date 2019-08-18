@@ -25,10 +25,14 @@ class AuthService {
       .then(response => response.data)
   }
 
-  me() {
+  getCurrentUser() {
     return this.auth.get('/auth/me')
-    .then(response => response.data)
+    .then(response => {
+      // console.log(response.data);
+      return response.data
+    })
   }
+
 }
 
 const authService = new AuthService();

@@ -11,7 +11,7 @@ class Navbar extends Component {
                 <Link to='/setup'>New Session</Link>
               </li>
               <li>
-                <Link to='/gallery-control-panel'>Gallery</Link>
+                <Link to='/gallery'>Gallery</Link>
               </li>
               <li onClick={this.props.logout}>
                  Logout

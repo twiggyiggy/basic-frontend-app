@@ -9,7 +9,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
-import GalleryControlPanel from './pages/GalleryControlPanel'
+import Gallery from './pages/Gallery'
 
 import AuthProvider from './contexts/auth-context.js';
 
@@ -26,7 +26,7 @@ class App extends Component {
               <AnonRoute path='/' exact component={Home} /> 
               <AnonRoute path='/signup' exact component={Signup} />
               <AnonRoute path='/login' exact component={Login} />
-              <PrivateRoute path='/gallery-control-panel' exact component={GalleryControlPanel}/>
+              <PrivateRoute path='/gallery' exact component={Gallery}/>
               <PrivateRoute path='/setup' exact component={Setup} />
               <Route component={NotFound} />
             </Switch>

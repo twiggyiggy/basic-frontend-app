@@ -10,7 +10,7 @@ class AuthProvider extends Component {
     isLoading: true,
   }
 
-  userSignUp = (user) => {
+  signup = (user) => {
     return authService.signup(user)
     .then((user) => {
       this.setState({
@@ -20,7 +20,7 @@ class AuthProvider extends Component {
     })
   }
 
-  userLogin = (user) => {
+  login = (user) => {
     return authService.login(user)
     .then((user) => {
       this.setState({
@@ -30,7 +30,7 @@ class AuthProvider extends Component {
     }) 
   }
 
-  userLogout = () => {
+  logout = () => {
     return authService.logout()
     .then(() => {
       this.setState({
@@ -41,7 +41,7 @@ class AuthProvider extends Component {
   }
 
   componentDidMount() {
-    authService.me()
+    authService.getCurrentUser()
     .then(user => {
       this.setState({
         user,
@@ -67,9 +67,9 @@ class AuthProvider extends Component {
               {
                 user,
                 isLoggedIn,
-                login: this.userLogin,
-                signup: this.userSignUp,
-                logout: this.userLogout
+                login: this.login,
+                signup: this.signup,
+                logout: this.logout
               }
             }>
               {this.props.children}
