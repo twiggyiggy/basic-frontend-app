@@ -19,4 +19,4 @@ const AnonRoute = (props) => {
   );
 }
 
-export default AnonRoute;
+export default withAuth(AnonRoute);

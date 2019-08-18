@@ -22,4 +22,4 @@ class Navbar extends Component {
   }
 }
 
-// export default withAuth(Navbar);
+export default withAuth(Navbar);
