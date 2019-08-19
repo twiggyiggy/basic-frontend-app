@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Navbar from '../Navbar';
 
 export class Slideshow extends Component {
-    timeStarted; timeElapsed; timeRemaining; timePaused; hasBeenPaused;
+    timeIterationStarted; timeElapsedFromIterationStart; timeRemainingInIteration; timeOfCurrentPause; 
+    hasTimerBeenPaused;
 
     state = {
         photos: this.props.photos,
@@ -12,22 +13,24 @@ export class Slideshow extends Component {
     }
     
     setTimer = () => {
-        this.timeStarted = new Date();
-        const nextInterval = this.hasBeenPaused ? this.timeRemaining : this.state.interval
-        this.hasBeenPaused = false;
+        this.timeIterationStarted = new Date();
+        const nextInterval = this.hasTimerBeenPaused ? this.timeRemainingInIteration : this.state.interval
         this.timerID = setInterval(
-            () => this.showNextPhoto(),
+            () => {
+                this.hasTimerBeenPaused = false;
+                this.showNextPhoto()
+            },
             nextInterval
         );
     }
 
     togglePause = () => {
         if (this.state.playing) {
-            this.hasBeenPaused = true;
-            this.timePaused = new Date();
-            this.timeElapsed = this.timePaused - this.timeStarted;
-            this.timeRemaining = this.state.interval - this.timeElapsed;
-            console.log(this.timeElapsed)
+            this.hasTimerBeenPaused = true;
+            this.timeOfCurrentPause = new Date();
+            this.timeElapsedFromIterationStart = this.timeOfCurrentPause - this.timeIterationStarted;
+            this.timeRemainingInIteration = this.state.interval - this.timeElapsedFromIterationStart;
+            console.log(this.timeElapsedFromIterationStart)
             this.setState({
                 playing: false
             })
