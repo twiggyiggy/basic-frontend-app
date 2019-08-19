@@ -75,3 +75,7 @@ nav ul li {
   margin-left: 0.5em;
   margin-right: 0.5em;
 }
+
+.radio-container {
+  display: flex;
+}

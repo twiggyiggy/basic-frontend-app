@@ -24,6 +24,7 @@ export class Slideshow extends Component {
 
     togglePause = () => {
         if (this.state.playing) {
+        
             this.hasBeenPaused = true;
             this.timePaused = new Date();
             this.timeElapsed = this.timePaused - this.timeStarted;
