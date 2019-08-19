@@ -4,8 +4,7 @@ import UserPhotos from '../components/UserPhotos'
 
 function Gallery() {
   return (
-    <div>
-      <h1>User's Gallery</h1>
+    <div className="gallery-container">
       <UserPhotos/>
       <Navbar/>
     </div>

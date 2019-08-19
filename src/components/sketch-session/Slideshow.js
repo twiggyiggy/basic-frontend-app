@@ -7,7 +7,6 @@ export class Slideshow extends Component {
     state = {
         photos: this.props.photos,
         interval: 2000,
-        counter: 0,
         currentPhotoIndex: 0,
         playing: true
     }
