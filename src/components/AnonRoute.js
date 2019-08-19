@@ -7,12 +7,12 @@ const AnonRoute = (props) => {
   const {isLoggedIn, component: Component, ...rest} = props;
   return (
     <>
-      {!isLoggedIn ?  <Route 
-        render={(props) => {
-          return <Component {...props}/>
+      {!isLoggedIn 
+      ? <Route render={(props) => {
+        return <Component {...props}/>
         }}
-        {...rest}
-      /> : <Redirect to='/setup' />}
+        {...rest}/> 
+      : <Redirect to='/session' />}
     </>
 
    
