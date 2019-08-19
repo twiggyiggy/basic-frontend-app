@@ -18,7 +18,7 @@ export class UserPhotos extends Component {
             })
         ))
     }
-    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ dzieki temu setState mamy w state.userPhotos array z photosami obecnie zalogowanego uzytkownika
+    // getCurrentUser - siega do DB po obiekt uzytkownika (response what?), getUSerPhotos - sega do DB po array z obiektami zdjec, w response zachowuje je w stanie komponentu - pozniej do wyswietlenia na stronie
 
 
     render() {

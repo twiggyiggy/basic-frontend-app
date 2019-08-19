@@ -8,8 +8,8 @@ class ApiService {
     }
 
     getUserPhotos(user) {
-        const userId = user._id
-        return this.api.get(`photos/${userId}`)
+        const userId = user._id // method accepts user object as arg - with _id property to be extracted
+        return this.api.get(`photos/${userId}`) // using axios, request 
         .then(response => response)
     }
 

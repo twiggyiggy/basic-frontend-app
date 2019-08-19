@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
-import milligram from 'milligram'
+// import milligram from 'milligram'
 
 export default class Home extends Component {
   
