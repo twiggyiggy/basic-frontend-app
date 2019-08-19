@@ -25,6 +25,17 @@ export class Slideshow extends Component {
             currentPhotoIndex: nextPhotoIndex
         })
     }
+    
+    showPreviousPhoto = () => {
+        clearInterval(this.timerID);
+        let previousPhotoIndex = this.state.currentPhotoIndex-1;
+        if (previousPhotoIndex < 0) {
+            previousPhotoIndex = this.state.photos.length-1
+        }
+        this.setState({
+            currentPhotoIndex: previousPhotoIndex
+        })
+    }
 
     showPhotoAtIndex (index) {
         return <img 
@@ -41,7 +52,9 @@ export class Slideshow extends Component {
                     {this.showPhotoAtIndex(this.state.currentPhotoIndex)}
                 </div>
                 <div className="slide-show-controls">
-                    <button onClick={this.showNextPhoto}>>></button>
+                    <button onClick={this.showPreviousPhoto}>⟸</button>
+                    <button onClick={this.togglePause}>||</button>
+                    <button onClick={this.showNextPhoto}>⟹</button>
                 </div>
             </div>
         )
