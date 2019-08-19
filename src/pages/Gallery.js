@@ -5,7 +5,7 @@ import UserPhotos from '../components/UserPhotos'
 function Gallery() {
   return (
     <div>
-      <h1>Gallery Control Panel</h1>
+      <h1>User's Gallery</h1>
       <UserPhotos/>
       <Navbar/>
     </div>
