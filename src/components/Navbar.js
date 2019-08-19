@@ -8,7 +8,7 @@ class Navbar extends Component {
           <nav>
             <ul>
               <li>
-                <Link to='/setup'>New Session</Link>
+                <Link to='/session'>New Session</Link>
               </li>
               <li>
                 <Link to='/gallery'>Gallery</Link>
