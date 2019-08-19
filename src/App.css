@@ -3,6 +3,17 @@
   height: 100vh;
 }
 
+/* NAVBAR */
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
 
 /* GALLERY */
 
