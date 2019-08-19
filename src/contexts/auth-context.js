@@ -9,12 +9,13 @@ class AuthProvider extends Component {
     user: {},
     isLoading: true,
   }
-
+  
+  // this needs to be different!!!! see below
   signup = (user) => {
     return authService.signup(user)
     .then((user) => {
       this.setState({
-        isLoggedIn: true,
+        // isLoggedIn: true,
         user
       })
     })
@@ -59,7 +60,7 @@ class AuthProvider extends Component {
   }
 
   render() {
-    const {user, isLoggedIn, isLoading} = this.state;
+    const {user, isLoggedIn, isLoading } = this.state;
     return (
       <>
         {isLoading ? <p>Loading...</p> : (
@@ -69,7 +70,7 @@ class AuthProvider extends Component {
                 isLoggedIn,
                 login: this.login,
                 signup: this.signup,
-                logout: this.logout
+                logout: this.logout,
               }
             }>
               {this.props.children}

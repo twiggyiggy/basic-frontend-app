@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import withAuth from '../components/withAuth.js';
 
 class Signup extends Component {
@@ -8,6 +8,7 @@ class Signup extends Component {
     username: '',
     email: '',
     password: '',
+    redirect: false,
   };
 
   handleFormSubmit = (event) => {
@@ -16,11 +17,18 @@ class Signup extends Component {
 
     this.props.signup({ username, email, password })
       .then( (user) => {
+        // console.log(this.props)
+        // if (this.props.redirect === true) {
+        //   return (
+        //     <Redirect to='/login' />
+        //   )
+        // }
         // console.log(user)
         this.setState({
-            username: '',
-            email: '',
-            password: '',
+            // username: '',
+            // email: '',
+            // password: '',
+            redirect: true,
         });
       })
       .catch( error => console.log(error) )
@@ -32,8 +40,11 @@ class Signup extends Component {
   }
 
   render() {
-    const { username, password, email } = this.state;
-    return (
+    const { username, password, email, redirect} = this.state;
+    if (redirect) {
+      return <Redirect to='/login' />
+    } else {
+      return (
       <>
         <form onSubmit={this.handleFormSubmit}>
           <label htmlFor='username'>Username:</label>
@@ -51,6 +62,7 @@ class Signup extends Component {
 
       </>
     )
+  }
   }
 }
 
