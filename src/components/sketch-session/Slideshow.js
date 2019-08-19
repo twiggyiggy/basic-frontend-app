@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import Navbar from '../Navbar';
 
 export class Slideshow extends Component {
-    timeIterationStarted; timeElapsedFromIterationStart; timeRemainingInIteration; timeOfCurrentPause; 
-    hasTimerBeenPaused;
+    timeIterationStarted; timeElapsedSinceIterationStart; timeRemainingInIteration; timeOfCurrentPause; 
+    hasTimerBeenPausedSinceIterationStart;
 
     state = {
         photos: this.props.photos,
@@ -14,10 +14,10 @@ export class Slideshow extends Component {
     
     setTimer = () => {
         this.timeIterationStarted = new Date();
-        const nextInterval = this.hasTimerBeenPaused ? this.timeRemainingInIteration : this.state.interval
+        const nextInterval = this.hasTimerBeenPausedSinceIterationStart ? this.timeRemainingInIteration : this.state.interval
         this.timerID = setInterval(
             () => {
-                this.hasTimerBeenPaused = false;
+                this.hasTimerBeenPausedSinceIterationStart = false;
                 this.showNextPhoto()
             },
             nextInterval
@@ -26,11 +26,11 @@ export class Slideshow extends Component {
 
     togglePause = () => {
         if (this.state.playing) {
-            this.hasTimerBeenPaused = true;
+            this.hasTimerBeenPausedSinceIterationStart = true;
             this.timeOfCurrentPause = new Date();
-            this.timeElapsedFromIterationStart = this.timeOfCurrentPause - this.timeIterationStarted;
-            this.timeRemainingInIteration = this.state.interval - this.timeElapsedFromIterationStart;
-            console.log(this.timeElapsedFromIterationStart)
+            this.timeElapsedSinceIterationStart = this.timeOfCurrentPause - this.timeIterationStarted;
+            this.timeRemainingInIteration = this.state.interval - this.timeElapsedSinceIterationStart;
+            console.log(this.timeElapsedSinceIterationStart)
             this.setState({
                 playing: false
             })
