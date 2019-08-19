@@ -25,28 +25,28 @@ class Setup extends Component {
       <>
         <form onSubmit={this.handleSubmit}>
           <p>What would you like to sketch?</p>
-          <div>
+          <div className='radio-container'>
             <label htmlFor='hands'>Hands</label>
-            <input type='radio' id='hands' name='category' value='hands' />
+            <input type='radio' id='hands' name='category' value='hands' onChange={this.handleOnChange}/>
             
             <label htmlFor='feet'>Feet</label>
-            <input type='radio' id='feet' name='category' value='feet' />
+            <input type='radio' id='feet' name='category' value='feet' onChange={this.handleOnChange}/>
             
             <label htmlFor='face'>Face</label>
-            <input type='radio' id='face' name='category' value='face' />
+            <input type='radio' id='face' name='category' value='face' onChange={this.handleOnChange}/>
 
             <label htmlFor='figure'>Figure</label>
-            <input type='radio' id='figure' name='category' value='figure' />
+            <input type='radio' id='figure' name='category' value='figure' onChange={this.handleOnChange}/>
           
             <label htmlFor='other'>Other</label>
-            <input type='radio' id='other' name='category' value='other' />
+            <input type='radio' id='other' name='category' value='other' onChange={this.handleOnChange}/>
           
             <label htmlFor='all'>All</label>
-            <input type='radio' id='all' name='category' value='all' />
+            <input type='radio' id='all' name='category' value='all' onChange={this.handleOnChange}/>
           </div>
 
           <p>How long would you like to see each photo for?</p>
-          <div>
+          <div className='radio-container'>
             <label htmlFor='30000'>30 seconds</label>
             <input type='radio' id='30000' name='time' value='30000' />
 
@@ -64,7 +64,7 @@ class Setup extends Component {
           </div>
 
           <p>How many photos would you like to sketch?</p>
-          <div>
+          <div className='radio-container'>
             <label htmlFor='10'>10</label>
             <input type='radio' id='10' name='numberOfPhotos' value='10' />
 
