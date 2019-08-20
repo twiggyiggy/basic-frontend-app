@@ -34,11 +34,16 @@ class Setup extends Component {
     })
   }
 
+<<<<<<< HEAD
   randomizePhotos = (photos, numberOfPhotos) => {
     // get an array of photos - all of 'em (since it's an array, each photo will have an index)
     // create an array of 10 random unique numbers: 0 to numberOfPhotos.length
     // loop through the photos array - target photos at the selected indexes
     // push each targeted photo into new array: slideshowPhotos
+=======
+  getPicsFromApi = () => {
+    
+>>>>>>> 337a6fbf417494e827d78546db5a05dce8662255
   }
   
   componentDidMount = async () => {
@@ -112,12 +117,15 @@ class Setup extends Component {
       <button type='submit'>Start session</button>
     </form>
   
-  redirectToSlideshow = <Redirect to={{
-    pathname: '/slideshow',
-    dataForSlideshow: {
-
-    } 
-  }}/>
+  redirectToSlideshow = 
+    <Redirect to={{
+      pathname: '/slideshow',
+      dataForSlideshow: {
+        photos: [],
+        iterationLength: 0,
+        // DANE
+      } 
+    }}/>
 
   render() {
     const { category, interval, numberOfPhotos } = this.state;
