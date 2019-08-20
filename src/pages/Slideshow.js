@@ -114,17 +114,19 @@ export class Slideshow extends Component {
     render() {
         if (this.state.playing) this.play();
         return (
-            <div className="slide-show-container">
-                <div className="slide-show-photo-container">
-                    {this.showPhotoAtIndex(this.state.currentPhotoIndex)}
-                </div>
-                <div className="slide-show-controls">
-                    <button onClick={this.showPreviousPhoto}>⟸</button>
-                    <button onClick={this.togglePause}>||</button>
-                    <button onClick={this.showNextPhoto}>⟹</button>
+            <>
+                <div className="slide-show-container">
+                    <div className="slide-show-photo-container">
+                        {this.showPhotoAtIndex(this.state.currentPhotoIndex)}
+                    </div>
+                    <div className="slide-show-controls">
+                        <button onClick={this.showPreviousPhoto}>⟸</button>
+                        <button onClick={this.togglePause}>||</button>
+                        <button onClick={this.showNextPhoto}>⟹</button>
+                    </div>
                 </div>
                 <Navbar/>
-            </div>
+            </>
         )
     }
 }

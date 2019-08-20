@@ -50,7 +50,7 @@ class Setup extends Component {
 
   setUpForm =
     <form onSubmit={this.handleSubmit} className="setup-container">
-      <p>What would you like to sketch?</p>
+      <h5>What would you like to sketch?</h5>
       <div>
         <input type='radio' id='hands' name='category' value='hands' onChange={this.handleChange}/>
         <label htmlFor='hands'>hands</label>
@@ -68,10 +68,10 @@ class Setup extends Component {
         <label htmlFor='other'>other</label>
       
         <input type='radio' id='all' name='category' value='all' onChange={this.handleChange}/>
-        <label htmlFor='all'>all</label>
+        <label htmlFor='all'>All</label>
       </div>
 
-      <p>How long would you like to see each photo for?</p>
+      <h5>How long would you like to see each photo for?</h5>
       <div>
         <input type='radio' id='30000' name='interval' value='30000' onChange={this.handleChange}/>
         <label htmlFor='30000'>30 seconds</label>
@@ -89,7 +89,7 @@ class Setup extends Component {
         <label htmlFor='300000'>5 minutes</label>
       </div>
 
-      <p>How many photos would you like to sketch?</p>
+      <h5>How many photos would you like to sketch?</h5>
       <div>
         <input type='radio' id='10' name='numberOfPhotos' value='10' onChange={this.handleChange}/>
         <label htmlFor='10'>10</label>
