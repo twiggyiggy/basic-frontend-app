@@ -9,7 +9,6 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Gallery from './pages/Gallery';
-import SketchSession from './pages/SketchSession';
 import Slideshow from './pages/Slideshow';
 import Setup from './pages/Setup';
 
@@ -29,7 +28,6 @@ class App extends Component {
               <AnonRoute path='/signup' exact component={Signup} />
               <AnonRoute path='/login' exact component={Login} />
               <PrivateRoute path='/gallery' exact component={Gallery}/>
-              <PrivateRoute path='/session' exact component={SketchSession}/>
               <PrivateRoute path='/setup' exact component={Setup}/>
               <PrivateRoute path='/slideshow' exact component={Slideshow}/>
               <Route component={NotFound} />
