@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom' 
 
 class Setup extends Component {
   state = {
     category: '',
-    time: '',
-    numberOfPhotos: 1, 
+    interval: '',
+    numberOfPhotos: 1,
   }
 
   handleChange = (event) => {
@@ -15,12 +16,21 @@ class Setup extends Component {
   }
 
   handleSubmit = (event) => {
-    const { category, time, numberOfPhotos } = this.state;
+    const { category, interval, numberOfPhotos } = this.state;
     event.preventDefault();
+
+     getPicsFromApi()
+      .then((photos) => {
+          const { interval } = this.state;
+          props.history.push({ 
+            pathname: '/slideshow',
+            state: { photos, interval: Number(interval) }
+          })
+      })
   }
 
   render() {
-    const { category, time, numberOfPhotos } = this.state;
+    const { category, interval, numberOfPhotos } = this.state;
     return (
       <>
         <form onSubmit={this.handleSubmit}>
@@ -48,19 +58,19 @@ class Setup extends Component {
           <p>How long would you like to see each photo for?</p>
           <div className='radio-container'>
             <label htmlFor='30000'>30 seconds</label>
-            <input type='radio' id='30000' name='time' value='30000' />
+            <input type='radio' id='30000' name='interval' value='30000' />
 
             <label htmlFor='60000'>60 seconds</label>
-            <input type='radio' id='60000' name='time' value='60000' />
+            <input type='radio' id='60000' name='interval' value='60000' />
 
             <label htmlFor='120000'>2 minutes</label>
-            <input type='radio' id='120000' name='time' value='120000' />
+            <input type='radio' id='120000' name='interval' value='120000' />
 
             <label htmlFor='180000'>3 minutes</label>
-            <input type='radio' id='180000' name='time' value='180000' />
+            <input type='radio' id='180000' name='interval' value='180000' />
 
             <label htmlFor='300000'>5 minutes</label>
-            <input type='radio' id='300000' name='time' value='300000' />
+            <input type='radio' id='300000' name='interval' value='300000' />
           </div>
 
           <p>How many photos would you like to sketch?</p>
@@ -82,7 +92,7 @@ class Setup extends Component {
   }
 }
 
-export default Setup;
+export default withRouter(Setup);
 
           // <label htmlFor='category'>What would you like to sketch?</label>
           // <select name='category' id='category' onChange={this.handleChange} value='category'>

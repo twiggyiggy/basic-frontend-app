@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Slideshow from '../components/sketch-session/Slideshow.js';
-import Setup from '../components/sketch-session/Setup.js';
+import Slideshow from './Slideshow.js/index.js';
+import Setup from './Setup.js/index.js';
 
 export class SketchSession extends Component {
     state = {

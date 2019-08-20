@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Navbar from '../Navbar';
+import Navbar from '../components/Navbar';
 
 export class Slideshow extends Component {
     isIterationRunning;
@@ -11,7 +11,8 @@ export class Slideshow extends Component {
 
 
     state = {
-        photos: this.props.photos,
+        photos: [],
+        interval: 2000,
         currentPhotoIndex: 0,
         
         iterationLength: 2000,
@@ -87,6 +88,11 @@ export class Slideshow extends Component {
             src={this.state.photos[index]} 
             alt={'photo number '+ (index+1)}
         />
+    }
+
+    componentDidMount() {
+        const { photos, interval } = this.props.location.state;
+        this.setState({ photos, interval })
     }
 
     render() {
