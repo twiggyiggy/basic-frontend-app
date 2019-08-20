@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Slideshow from './Slideshow.js/index.js';
+import Slideshow from './Slideshow.js';
 import Setup from './Setup.js';
 
 export class SketchSession extends Component {

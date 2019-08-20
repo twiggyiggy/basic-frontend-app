@@ -19,14 +19,18 @@ class Setup extends Component {
     const { category, interval, numberOfPhotos } = this.state;
     event.preventDefault();
 
-     getPicsFromApi()
+     this.getPicsFromApi()
       .then((photos) => {
           const { interval } = this.state;
-          props.history.push({ 
+          this.props.history.push({ 
             pathname: '/slideshow',
             state: { photos, interval: Number(interval) }
           })
       })
+  }
+
+  getPicsFromApi = () => {
+
   }
 
   render() {
