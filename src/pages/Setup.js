@@ -104,14 +104,15 @@ class Setup extends Component {
       <button type='submit'>Start session</button>
     </form>
   
-  redirectToSlideshow = <Redirect to={{
-    pathname: '/slideshow',
-    dataForSlideshow: {
-      photos: [],
-      iterationLength: 0,
-      // DANE
-    } 
-  }}/>
+  redirectToSlideshow = 
+    <Redirect to={{
+      pathname: '/slideshow',
+      dataForSlideshow: {
+        photos: [],
+        iterationLength: 0,
+        // DANE
+      } 
+    }}/>
 
   render() {
     const { category, interval, numberOfPhotos } = this.state;
