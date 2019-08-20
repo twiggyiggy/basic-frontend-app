@@ -29,10 +29,11 @@ export class Slideshow extends Component {
         playing: true
     }
 
+
     // vvv this should be uncommented once Slideshow starts receiving props.photos and props.iterationLength
     // constructor(props) {
     //     super(props);
-    //     const {photos, iterationLength} = this.props.location.state;
+    //     const {photos, iterationLength} = this.props.location.dataForSlideshow;
     //     this.state = {
     //         photos,
     //         iterationLength,

@@ -15,7 +15,7 @@ import Setup from './pages/Setup';
 import AuthProvider from './contexts/auth-context.js';
 
 import './App.css';
-import 'milligram';
+import 'bootstrap';
 
 class App extends Component {
   render() {

@@ -45,7 +45,7 @@ class Setup extends Component {
   }
 
   getPicsFromApi = () => {
-
+    
   }
 
   setUpForm =
@@ -107,7 +107,9 @@ class Setup extends Component {
   redirectToSlideshow = <Redirect to={{
     pathname: '/slideshow',
     dataForSlideshow: {
-
+      photos: [],
+      iterationLength: 0,
+      // DANE
     } 
   }}/>
 

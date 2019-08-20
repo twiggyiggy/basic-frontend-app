@@ -7,14 +7,16 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div className="home-container">
         <h1>Bozo</h1>
-        <Link to='/login'>
-          <button>Log in</button>
-        </Link>
-        <Link to='/signup'>
-        <button>Sign up</button>
-        </Link>
+        <section>
+          <Link to='/login'>
+            <button>Log in</button>
+          </Link>
+          <Link to='/signup'>
+          <button>Sign up</button>
+          </Link>
+        </section>
       </div>
     )
   }
