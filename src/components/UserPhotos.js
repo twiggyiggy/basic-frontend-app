@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import apiService from '../services/api-service.js'
 import authService from '../services/auth-service'
-import milligram from 'milligram';
 
 export class UserPhotos extends Component {
 
