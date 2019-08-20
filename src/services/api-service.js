@@ -12,7 +12,12 @@ class ApiService {
         return this.api.get(`photos/${userId}`) // using axios, request 
         .then(response => response)
     }
-
+// *** unnecessary! Better to fetch ALL user's photos (see fn above), then filter that array?
+    // getSlideshowPhotos(category, numberOfPhotos, user) {
+    //     const userId = user._id
+    //     return this.api.get(`photos/${userId}`)
+    //     .then(response => response)
+    // }
 }
 
 const apiService = new ApiService();

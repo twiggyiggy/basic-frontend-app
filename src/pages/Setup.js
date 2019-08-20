@@ -3,6 +3,8 @@ import { withRouter, Redirect } from 'react-router-dom'
 import { thisExpression } from '@babel/types';
 
 import Navbar from '../components/Navbar.js'
+import authService from '../services/auth-service.js';
+import apiService from '../services/api-service.js';
 
 class Setup extends Component {
 
@@ -11,7 +13,7 @@ class Setup extends Component {
   state = {
     category: '',
     interval: '',
-    numberOfPhotos: 1,
+    numberOfPhotos: '',
     wasFormSubmitted: false
   }
 
@@ -27,27 +29,33 @@ class Setup extends Component {
     console.log("handling submit")
     const { category, interval, numberOfPhotos } = this.state;
     event.preventDefault();
-    
-
-    // this.getPicsFromApi()
-    //   .then((photos) => {
-    //       const { interval } = this.state;
-    //       this.props.history.push({ 
-    //         pathname: '/slideshow',
-    //         state: { photos, interval: Number(interval) }
-    //       })
-    //   })
-
-    
     this.setState({
       wasFormSubmitted: true
     })
   }
 
-  getPicsFromApi = () => {
-
+  randomizePhotos = (photos, numberOfPhotos) => {
+    // get an array of photos - all of 'em (since it's an array, each photo will have an index)
+    // create an array of 10 random unique numbers: 0 to numberOfPhotos.length
+    // loop through the photos array - target photos at the selected indexes
+    // push each targeted photo into new array: slideshowPhotos
   }
-
+  
+  componentDidMount = async () => {
+    const user = await authService.getCurrentUser()
+    .then(response => response)
+    const userPhotos = await apiService.getUserPhotos(user)
+    // .then(response => response)
+    .then((photos) => {
+        const { interval } = this.state;
+        this.randomizePhotos(userPhotos, this.state.numberOfPhotos)
+        this.props.history.push({ 
+          pathname: '/slideshow',
+          state: { photos, interval: Number(interval) }
+        })
+    })
+  }
+  
   setUpForm =
     <form onSubmit={this.handleSubmit} className="setup-container">
       <h5>What would you like to sketch?</h5>
