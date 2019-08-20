@@ -12,14 +12,15 @@ export class SketchSession extends Component {
             'https://static.turbosquid.com/Preview/2015/02/17__07_42_52/Leg_render_1.jpg5f4dfaef-f39c-43ea-afe2-522e3788b169Original.jpg',
             'https://media.ottobock.com/_web-site/prosthetics/upper-limb/silicone-cover/images/_35236_dsc0088_169_4c_wb_1_1_hotspot_zoom.jpg'
         ],
+        iterationLength: 2000,
         userPhotos: []
     }
 
     render() {
-        const { currentComponent, currentUserPhotos, userPhotos} = this.state
+        const { currentComponent, currentUserPhotos, userPhotos, iterationLength} = this.state
         let componentToRender;
         if (currentComponent==='slideshow') {
-            componentToRender = <Slideshow photos={currentUserPhotos}/>
+            componentToRender = <Slideshow photos={currentUserPhotos} iterationLength={iterationLength}/>
         } else if (currentComponent === 'setup') {
             componentToRender = <Setup />
         }

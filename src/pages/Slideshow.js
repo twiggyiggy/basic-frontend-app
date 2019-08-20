@@ -10,16 +10,38 @@ export class Slideshow extends Component {
     timer;
 
 
+    // vvv this should be removed once Slideshow starts receiving props.photos and props.iterationLength
+    photos = [
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Foot_on_white_background.jpg/345px-Foot_on_white_background.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/3/32/Human-Hands-Front-Back.jpg',
+        'https://upload.wikimedia.org/wikipedia/en/e/e8/Samfacejr.jpg',
+        'https://static.turbosquid.com/Preview/2015/02/17__07_42_52/Leg_render_1.jpg5f4dfaef-f39c-43ea-afe2-522e3788b169Original.jpg',
+        'https://media.ottobock.com/_web-site/prosthetics/upper-limb/silicone-cover/images/_35236_dsc0088_169_4c_wb_1_1_hotspot_zoom.jpg'
+    ]
+    
+    // vvv this should be removed once Slideshow starts receiving props.photos and props.iterationLength
     state = {
-        photos: [],
-        interval: 2000,
+        photos: this.photos,
         currentPhotoIndex: 0,
         
         iterationLength: 2000,
         
         playing: true
     }
+
+    // vvv this should be uncommented once Slideshow starts receiving props.photos and props.iterationLength
+    // constructor(props) {
+    //     super(props);
+    //     const {photos, iterationLength} = this.props;
+    //     this.state = {
+    //         photos,
+    //         iterationLength,
+    //         currentPhotoIndex: 0,
+    //         playing: true
+    //     }
+    // }
     
+
     play = () => {
         this.timePlayCycleStarted = new Date();
         this.hasTimerBeenPausedLastCycle = false;
@@ -81,18 +103,11 @@ export class Slideshow extends Component {
         }
     }
 
-    
-
     showPhotoAtIndex (index) {
         return <img 
             src={this.state.photos[index]} 
             alt={'photo number '+ (index+1)}
         />
-    }
-
-    componentDidMount() {
-        const { photos, interval } = this.props.location.state;
-        this.setState({ photos, interval })
     }
 
     render() {

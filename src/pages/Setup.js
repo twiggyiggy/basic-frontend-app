@@ -38,6 +38,7 @@ class Setup extends Component {
     return (
       <>
         <form onSubmit={this.handleSubmit}>
+          
           <p>What would you like to sketch?</p>
           <div className='radio-container'>
             <label htmlFor='hands'>Hands</label>
