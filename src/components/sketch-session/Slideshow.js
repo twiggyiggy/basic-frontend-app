@@ -27,7 +27,6 @@ export class Slideshow extends Component {
     }
     
     setTimer = () => {
-
         this.timer = setInterval(
             () => {
                 this.intervalOfNextPlayCycle = this.state.iterationLength
