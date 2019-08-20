@@ -41,6 +41,7 @@ export class Slideshow extends Component {
     //     }
     // }
     
+    componentWillUnmount = () => clearInterval(this.timer)
 
     play = () => {
         this.timePlayCycleStarted = new Date();
