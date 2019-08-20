@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import Navbar from '../Navbar';
+import Navbar from '../components/Navbar';
 
 export class Slideshow extends Component {
     timeIterationStarted; timeElapsedFromIterationStart; timeRemainingInIteration; timeOfCurrentPause; 
     hasTimerBeenPaused;
 
     state = {
-        photos: this.props.photos,
+        photos: [],
         interval: 2000,
         currentPhotoIndex: 0,
         playing: true
@@ -68,6 +68,11 @@ export class Slideshow extends Component {
             src={this.state.photos[index]} 
             alt={'photo number '+ (index+1)}
         />
+    }
+
+    componentDidMount() {
+        const { photos, interval } = this.props.location.state;
+        this.setState({ photos, interval })
     }
 
     render() {

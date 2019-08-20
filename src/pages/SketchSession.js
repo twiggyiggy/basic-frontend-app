@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import Slideshow from '../components/sketch-session/Slideshow.js';
-import Setup from '../components/sketch-session/Setup.js';
+import Slideshow from './Slideshow.js/index.js';
+import Setup from './Setup.js/index.js';
 
 export class SketchSession extends Component {
     state = {
-        currentComponent: 'setup',
+        currentComponent: 'slideshow',
         currentUserPhotos: [
             'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Foot_on_white_background.jpg/345px-Foot_on_white_background.jpg',
             'https://upload.wikimedia.org/wikipedia/commons/3/32/Human-Hands-Front-Back.jpg',
