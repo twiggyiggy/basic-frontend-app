@@ -2,47 +2,49 @@ import React, { Component } from 'react'
 import Navbar from '../components/Navbar';
 
 export class Slideshow extends Component {
-    timeIterationStarted; timeElapsedFromIterationStart; timeRemainingInIteration; timeOfCurrentPause; 
-    hasTimerBeenPaused;
+    isIterationRunning;
+    timeIterationStarted; timeElapsedInIteration;
+    timePlayCycleStarted;
+    intervalOfNextPlayCycle;
+    hasTimerBeenPausedLastCycle;
+    timer;
+
 
     state = {
         photos: [],
         interval: 2000,
         currentPhotoIndex: 0,
+        
+        iterationLength: 2000,
+        
         playing: true
     }
     
+    play = () => {
+        this.timePlayCycleStarted = new Date();
+        this.hasTimerBeenPausedLastCycle = false;
+        if (this.timer) clearInterval(this.timer);
+        this.setTimer();
+    }
+    
     setTimer = () => {
-        this.timeIterationStarted = new Date();
-        const nextInterval = this.hasTimerBeenPaused ? this.timeRemainingInIteration : this.state.interval
-        this.timerID = setInterval(
+
+        this.timer = setInterval(
             () => {
-                this.hasTimerBeenPaused = false;
-                this.showNextPhoto()
+                this.intervalOfNextPlayCycle = this.state.iterationLength
+                this.startNextIteration()
             },
-            nextInterval
-        );
+            this.intervalOfNextPlayCycle
+            );
     }
-
-    togglePause = () => {
-        if (this.state.playing) {
-            this.hasTimerBeenPaused = true;
-            this.timeOfCurrentPause = new Date();
-            this.timeElapsedFromIterationStart = this.timeOfCurrentPause - this.timeIterationStarted;
-            this.timeRemainingInIteration = this.state.interval - this.timeElapsedFromIterationStart;
-            console.log(this.timeElapsedFromIterationStart)
-            this.setState({
-                playing: false
-            })
-        } else {
-            this.setState({
-                playing: true
-            })
-        }
+    
+    startNextIteration = () => {
+        this.timeElapsedInIteration = 0;
+        this.timeIterationStarted = new Date();
+        this.showNextPhoto();
     }
-
+        
     showNextPhoto = () => {
-        clearInterval(this.timerID);
         let nextPhotoIndex = this.state.currentPhotoIndex+1;
         if (nextPhotoIndex >= this.state.photos.length) {
             nextPhotoIndex = 0
@@ -53,7 +55,6 @@ export class Slideshow extends Component {
     }
     
     showPreviousPhoto = () => {
-        clearInterval(this.timerID);
         let previousPhotoIndex = this.state.currentPhotoIndex-1;
         if (previousPhotoIndex < 0) {
             previousPhotoIndex = this.state.photos.length-1
@@ -62,6 +63,26 @@ export class Slideshow extends Component {
             currentPhotoIndex: previousPhotoIndex
         })
     }
+
+    togglePause = () => {
+        if (this.state.playing) {
+            clearInterval(this.timer)
+            this.hasTimerBeenPausedLastCycle = true;
+            const endOfPlayCycle = new Date();
+            const timeElapsedThisPlayCycle = endOfPlayCycle - this.timePlayCycleStarted;
+            this.timeElapsedInIteration += timeElapsedThisPlayCycle;
+            this.intervalOfNextPlayCycle = this.state.iterationLength - this.timeElapsedInIteration;
+            this.setState({
+                playing: false
+            })
+        } else {
+            this.setState({
+                playing: true
+            })
+        }
+    }
+
+    
 
     showPhotoAtIndex (index) {
         return <img 
@@ -76,11 +97,7 @@ export class Slideshow extends Component {
     }
 
     render() {
-        if (this.state.playing) {
-            this.setTimer();
-        } else {
-            clearInterval(this.timerID);
-        }
+        if (this.state.playing) this.play();
         return (
             <div className="slide-show-container">
                 <div className="slide-show-photo-container">
