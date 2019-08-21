@@ -32,6 +32,9 @@ class Gallery extends React.Component {
 
     return (
       <div className="gallery-container">
+        <header>
+         <h1>Bozo</h1>
+        </header>
         <AddPhoto getUpdatedGalleryPhotos={this.getGalleryPhotos} />
         <UserPhotos userPhotos={userPhotos}/>
         <Navbar/>
