@@ -109,6 +109,8 @@ nav ul li {
   flex-direction: column;
   align-items: center;
   margin-bottom: 0;
+  width: 14.7em;
+
 }
 
 .gallery-container header {
@@ -117,6 +119,19 @@ nav ul li {
 
 .gallery-container h1 {
   margin-bottom: 0;
+}
+
+.gallery-container label {
+  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  text-align: center;
+}
+
+.gallery-container select, input {
+  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 0.8em;
+  font-weight: 300;
 }
 
 .user-photos-container {
