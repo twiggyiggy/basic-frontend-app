@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom' 
+import { Redirect } from 'react-router-dom' 
 
 import Navbar from '../components/Navbar.js';
 import authService from '../services/auth-service.js';
@@ -27,6 +27,7 @@ class Setup extends Component {
     const user = await authService.getCurrentUser()
     const response = await apiService.getUserPhotos(user)
     const userPhotos = response.data
+    console.log('setup handleSubmit',userPhotos)
     const userPhotoUrls = userPhotos.map(photoObj => photoObj.imageUrl)
     this.setState({
       wasFormSubmitted: true,

@@ -17,7 +17,7 @@ class Gallery extends React.Component {
     
     apiService.getUserPhotos(user)
     .then(response => {
-      console.log(response)
+      console.log('apiService.getUserPhotos:', response)
         this.setState({
             userPhotos: response.data.reverse()
         })
