@@ -20,7 +20,12 @@ class ApiService {
         return this.api.post('/photos/add', newPhoto)
         .then(response => response);
       }
+      
+      removePhoto(photoId) {
+          return this.api.delete(`photos/${photoId}/delete`)
+          .then(response => response)
+        }
 }
-
+        
 const apiService = new ApiService();
 export default apiService;
