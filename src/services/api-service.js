@@ -10,10 +10,11 @@ class ApiService {
 
     
 
-    getUserPhotos(user) {
+    getUserPhotos = async (user) => {
         const userId = user._id // method accepts user object as arg - with _id property to be extracted
-        return this.api.get(`photos/${userId}`) // using axios, request 
+        const userPhotos = await this.api.get(`photos/${userId}`) // using axios, request 
         .then(response => response)
+        return userPhotos
     }
 
     addOnePhoto(newPhoto) {

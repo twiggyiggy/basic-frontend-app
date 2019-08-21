@@ -16,9 +16,7 @@ class AddPhoto extends Component {
   }
 
   handleSubmit = (event) => {
-    const { imageUrl, category } = this.state;
-    console.log({ imageUrl, category});
-    
+    const { imageUrl, category } = this.state;    
     event.preventDefault();
     apiService.addOnePhoto({
       imageUrl,
@@ -36,11 +34,11 @@ class AddPhoto extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor='imageUrl'>image</label>
-          <input type='text' id='imageUrl' onChange={this.handleChange} value={image} name='imageUrl'/>
-          <label htmlFor='category'>Category</label>
+          {/* <label htmlFor='imageUrl'>Enter image URL</label> */}
+          <input type='text' id='imageUrl' onChange={this.handleChange} value={image} name='imageUrl' placeholder="Enter image URL"/>
+          {/* <label htmlFor='category'>Set category</label> */}
           <select name='category' onChange={this.handleChange} value={category} id='category'>
-            <option value=''>--Choose a category--</option>
+            <option value=''>Set category</option>
             <option value='hands'>Hands</option>
             <option value='feet'>Feets</option>
             <option value='face'>Face</option>

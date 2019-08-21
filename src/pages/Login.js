@@ -28,7 +28,7 @@ class Login extends Component {
     const { username, password } = this.state;
     return (
       <>
-        <form onSubmit={this.handleFormSubmit}>
+        <form onSubmit={this.handleFormSubmit} className="auth-form">
           <label htmlFor='username' >Username:</label>
           <input id='username' type='text' name='username' value={username} onChange={this.handleChange}/>
           <label htmlFor='password'>Password:</label>

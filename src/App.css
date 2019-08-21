@@ -2,22 +2,28 @@
 :root {
   --content-height: 90vh;
   --navbar-height: 10vh;
+  --button-color: sandybrown;
 }
+
 
 /* APP */
 .app-container {
-  display:flex;
+  display: flex;
   flex-direction: column;
-  justify-content: space-evenly
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 /* NAVBAR */
+
 nav {
   display: flex;
   justify-content: center;
-  margin-top: 1em;
+  margin-top: 0.9em;
   height: var(--navbar-height);
   text-align: center;
+  margin-bottom: 0;
+  
 }
 
 nav ul {
@@ -38,6 +44,7 @@ nav ul li {
   align-items: center;
   margin-left: 10vw;
   margin-right: 10vw;
+  margin-bottom: 0;
 }
 
 .home-container h1 {
@@ -87,25 +94,77 @@ nav ul li {
 /* GALLERY */
 
 .gallery-container {
-  height: var(--content-height);
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-container header {
+  margin-top: 4vh;
+}
+
+.gallery-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0;
+  width: 14.7em;
+
+}
+
+.gallery-container header {
+  margin-bottom: 0.5em;
+}
+
+.gallery-container h1 {
+  margin-bottom: 0;
+}
+
+.gallery-container label {
+  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  text-align: center;
+}
+
+.gallery-container select, input {
+  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 0.8em;
+  font-weight: 300;
 }
 
 .user-photos-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
-  
+  justify-content: center;
+  width: 100%;
 }
 
 .photo-container {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  width: 100px;
+  width: 7.8em;
   border: #cccc 1px solid;
   border-radius: 5px;
   margin: 5px;
+}
+
+.photo-container p {
+  font-weight: bold;
+  color: orangered;
+  text-align: right;
+  border: none;
+  margin-top: 0em;
+  margin-right: 0.4em;
+  margin-bottom: 0.2em;
+}
+
+.photo-container img {
+  object-fit: cover;
+  height: 5em;
+  width: 100%;
 }
 
 /* .image-container {
@@ -123,17 +182,25 @@ nav ul li {
 .setup-container {
   display: flex;
   flex-direction: column;
-  margin-left: 5vw;
-  margin-right: 5vw;
-  /* width: 90vw; */
-  /* flex-wrap: wrap; */
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 16.1em;
+  margin-bottom: 0;
+}
 
+.setup-container header {
+  margin-top: 4vh;
+}
+
+.setup-container h1 {
+  text-align: center;
+  margin-bottom: 0;
 }
 
 .setup-container div {
   display: flex;
   flex-wrap: wrap;
-  justify-content:  space-evenly;
+  justify-content: center;
   align-content: center;
   margin-bottom: 0.5em;
 }
@@ -155,7 +222,7 @@ nav ul li {
   color: black;
   margin-left: 0.2em;
   margin-right: 0.2em;
-  min-width: 7em;
+  min-width: 6.3em;
   text-align: center;
   background-color: rgb(225, 230, 243);
 }
@@ -166,15 +233,19 @@ nav ul li {
 }
 
 .setup-container h5 {
-  font-size: 0.9em;
+  font-size: 1em;
   text-align: center;
-  margin-top: 0.6em;
-  margin-bottom: 0.9em;
+  margin-top: 0.7em;
+  margin-bottom: 0.5em;
 }
 
 .setup-container button {
   max-width: 80%;
   align-self: center;
+  background-color: var(--button-color);
+  border: none;
+  margin-top: 1.3em;
+  margin-bottom: 1.5em;
 }
 
 
@@ -186,6 +257,8 @@ nav ul li {
   flex-direction: column;
   align-items: center;
   height: var(--content-height);
+  margin-bottom: 0;
+  justify-content: flex-end;
 }
 
 .slide-show-photo-container {
@@ -213,6 +286,8 @@ nav ul li {
   font-size: 0.7em;
   margin-left: 0.5em;
   margin-right: 0.5em;
+  border: none;
+  background-color: var(--button-color);
 }
 
 

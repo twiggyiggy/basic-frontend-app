@@ -23,10 +23,17 @@ export class UserPhotos extends Component {
 
     handleDelete = (photoId) => {
         apiService.removePhoto(photoId)
+<<<<<<< HEAD
         .then(()=> this.props.getUpdatedGalleryPhotos())
     }
 
     
+=======
+        .then(
+            this.props.getUpdatedGalleryPhotos()
+        )
+    }
+>>>>>>> dev
 
     render() {
         const {userPhotos} = this.props;
@@ -38,9 +45,15 @@ export class UserPhotos extends Component {
                         return (
                             <article key={photo._id} className='photo-container'>
                                 <img src={photo.imageUrl} alt='users file' />
+<<<<<<< HEAD
                                 <button onClick={() => {
                                     this.handleDelete(photo._id)
                                 }}>Delete</button>
+=======
+                                <p onClick={() => {this.handleDelete(photo._id)}}>
+                                    ⃠
+                                </p>
+>>>>>>> dev
                             </article>
                         )
                         else return ""
