@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import apiService from '../services/api-service.js';
+import {Redirect} from 'react-router-dom';
 
 class AddPhoto extends Component {
   state = {
-    category: '',
     imageUrl: '',
+    category: '',
   }
 
   handleChange = (event) => {
@@ -13,20 +15,31 @@ class AddPhoto extends Component {
     })
   }
 
-  handleSubmit = () => {
-
+  handleSubmit = (event) => {
+    const { imageUrl, category } = this.state;
+    console.log({ imageUrl, category});
+    
+    event.preventDefault();
+    apiService.addOnePhoto({
+      imageUrl,
+      category,
+    })
+    .then(response => {
+      this.props.getUpdatedGalleryPhotos()
+    })
+    .catch(error => console.log(error))
   }
 
 
   render() {
-    const { image, category } = this.state;
+    const { image, category, redirect } = this.state;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor='image'>image</label>
-          <input type='text' id='image' onChange={this.handleOnChange} value={image} name='image'/>
+          <label htmlFor='imageUrl'>image</label>
+          <input type='text' id='imageUrl' onChange={this.handleChange} value={image} name='imageUrl'/>
           <label htmlFor='category'>Category</label>
-          <select name='category' onChange={this.handleOnChange} value={category} id='category'>
+          <select name='category' onChange={this.handleChange} value={category} id='category'>
             <option value=''>--Choose a category--</option>
             <option value='hands'>Hands</option>
             <option value='feet'>Feets</option>
@@ -34,8 +47,9 @@ class AddPhoto extends Component {
             <option value='figure'>Figure</option>
             <option value='other'>Other</option>
           </select>
-
+          <button type='submit'>Add new photo</button>
         </form>
+        {redirect ? <Redirect to='/apps' /> : null}
       </div>
     )
   }

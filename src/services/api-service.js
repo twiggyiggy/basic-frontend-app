@@ -3,7 +3,8 @@ import axios from 'axios';
 class ApiService {
     constructor () {
         this.api = axios.create({
-            baseURL: 'http://localhost:4000/api/'
+            baseURL: 'http://localhost:4000/api/',
+            withCredentials: true,
         })
     }
 
@@ -12,12 +13,11 @@ class ApiService {
         return this.api.get(`photos/${userId}`) // using axios, request 
         .then(response => response)
     }
-// *** unnecessary! Better to fetch ALL user's photos (see fn above), then filter that array?
-    // getSlideshowPhotos(category, numberOfPhotos, user) {
-    //     const userId = user._id
-    //     return this.api.get(`photos/${userId}`)
-    //     .then(response => response)
-    // }
+
+    addOnePhoto(newPhoto) {
+        return this.api.post('/photos/add', newPhoto)
+        .then(response => response);
+      }
 }
 
 const apiService = new ApiService();

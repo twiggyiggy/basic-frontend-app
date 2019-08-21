@@ -4,25 +4,25 @@ import authService from '../services/auth-service'
 
 export class UserPhotos extends Component {
 
-    state = {
-        userPhotos: []
-    }
+    // // state = {
+    // //     userPhotos: []
+    // // }
 
-    componentDidMount = async () => {
-        const user = await authService.getCurrentUser()
-        .then(response => response)
-        apiService.getUserPhotos(user)
-        .then(response => (
-            this.setState({
-                userPhotos: response.data
-            })
-        ))
-    }
+    // componentDidMount = async () => {
+    //     const user = await authService.getCurrentUser()
+    //     .then(response => response)
+    //     apiService.getUserPhotos(user)
+    //     .then(response => (
+    //         this.setState({
+    //             userPhotos: response.data
+    //         })
+    //     ))
+    // }
     // getCurrentUser - siega do DB po obiekt uzytkownika (response what?), getUSerPhotos - sega do DB po array z obiektami zdjec, w response zachowuje je w stanie komponentu - pozniej do wyswietlenia na stronie
 
 
     render() {
-        const {userPhotos} = this.state;
+        const {userPhotos} = this.props;
         return (
             <>
                 <section className='user-photos-container'>
