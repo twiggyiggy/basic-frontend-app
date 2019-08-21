@@ -329,6 +329,7 @@ nav ul li {
 .setup-container input[type="radio"]:checked + label {
   color: var(--radio-buttons-text-color-checked);
   background-color: var(--radio-buttons-color-checked);
+  border:none;
 }
 
 .setup-container h5 {
