@@ -27,22 +27,15 @@ class Setup extends Component {
     const user = await authService.getCurrentUser()
     const response = await apiService.getUserPhotos(user)
     const userPhotos = response.data
-<<<<<<< HEAD
-    console.log('setup handleSubmit',userPhotos)
-    const userPhotoUrls = userPhotos.map(photoObj => photoObj.imageUrl)
-=======
+    console.log('setup handleSubmit', userPhotos)
     const userPhotoUrls = userPhotos
-      .filter(photoObj => photoObj ? true : false)
-      .filter(photoObj => photoObj.category === this.state.category || this.state.category === 'all' ? true : false)
+      .filter(photoObj => photoObj.category === this.state.category || this.state.category === 'all')
       .map(photoObj => photoObj.imageUrl)
-<<<<<<< HEAD
     
->>>>>>> dev
     this.setState({
       wasFormSubmitted: true,
       photosFromUser: userPhotoUrls,
     })
-=======
     if (userPhotoUrls.length === 0) {
       console.error("userPhotoUrls is empty")
     } else {
@@ -51,7 +44,6 @@ class Setup extends Component {
         photosFromUser: userPhotoUrls,
       })
     }
->>>>>>> 85587876e846fbde9635c714fd1c9ee33ae0cf1c
   }
 
   randomizePhotos = (photos, numberOfPhotos) => {
@@ -64,14 +56,7 @@ class Setup extends Component {
   
   setUpForm =
     <form onSubmit={this.handleSubmit} className="setup-container">
-<<<<<<< HEAD
       <h3>What do you want to sketch?</h3>
-=======
-      <header>
-        <h1>Bozo</h1>
-      </header>
-      <h5>What would you like to sketch?</h5>
->>>>>>> dev
       <div>
         <input type='radio' id='hands' name='category' value='hands' onChange={this.handleChange}/>
         <label htmlFor='hands'>hands</label>
