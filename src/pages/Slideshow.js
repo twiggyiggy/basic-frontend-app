@@ -82,9 +82,17 @@ export class Slideshow extends Component {
 
     displayTimeRemaining = () => {
         const {secondsLeftInCycle} = this.state;
-        const minutes = Math.floor(secondsLeftInCycle/60);
-        const seconds = secondsLeftInCycle % 60
+        let minutes = Math.floor(secondsLeftInCycle/60);
+        let seconds = secondsLeftInCycle % 60
+        minutes = this.padToTwoDigits(minutes);
+        seconds = this.padToTwoDigits(seconds);
         return <>{minutes}:{seconds}</>
+    }
+
+    padToTwoDigits = (number) => {
+        return number < 10
+            ? '0' + number.toString()
+            : number
     }
     
     
@@ -95,7 +103,7 @@ export class Slideshow extends Component {
                     <div className="slide-show-photo-container">
                     </div>
                     <div className="slide-show-counter">
-                        {this.displayTimeRemaining} remaining on photo @ index {this.state.currentPhotoIndex}
+                        {this.displayTimeRemaining()} remaining on photo @ index {this.state.currentPhotoIndex}
                     </div>
                     <div className="slide-show-controls">
                         <button onClick={this.startPreviousCycle}>⟸</button>
