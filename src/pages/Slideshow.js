@@ -53,6 +53,10 @@ export class Slideshow extends Component {
         })
     }
 
+    startPreviousCycle = () => {
+        let {cycleLength, currentPhotoIndex} = this.state;
+    }
+
     togglePause = () => {
         if (this.state.playing) {
             this.stopTimer()
