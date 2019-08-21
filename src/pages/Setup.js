@@ -7,27 +7,25 @@ import authService from '../services/auth-service.js';
 import apiService from '../services/api-service.js';
 
 class Setup extends Component {
-
-  wasFormSubmitted = false;
+  
+  allUserPhotos = []
 
   state = {
     category: '',
-    interval: '',
+    interval: 2000,
     numberOfPhotos: '',
-    wasFormSubmitted: false
+    wasFormSubmitted: false,
   }
 
   handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name,value)
     this.setState({
       [name]: value,
     })
   }
 
   handleSubmit = (event) => {
-    console.log("handling submit")
-    const { category, interval, numberOfPhotos } = this.state;
+    // const { category, interval, numberOfPhotos } = this.state;
     event.preventDefault();
     this.setState({
       wasFormSubmitted: true
@@ -44,17 +42,24 @@ class Setup extends Component {
   componentDidMount = async () => {
     const user = await authService.getCurrentUser()
     .then(response => response)
-    const userPhotos = await apiService.getUserPhotos(user)
+    apiService.getUserPhotos(user)
     // .then(response => response)
-    .then((photos) => {
-        const { interval } = this.state;
-        this.randomizePhotos(userPhotos, this.state.numberOfPhotos)
-        this.props.history.push({ 
-          pathname: '/slideshow',
-          state: { photos, interval: Number(interval) }
-        })
+    .then((response) => {
+        const userPhotos = response.data
+        // const { interval } = this.state;
+        // console.log(interval)
+        // this.randomizePhotos(userPhotos, this.state.numberOfPhotos)
+        const userPhotoUrls = userPhotos.map(photoObj => photoObj.imageUrl)
+        console.log(userPhotoUrls)
+        this.allUserPhotos = userPhotoUrls
+        // this.props.history.push({ 
+        //   pathname: '/slideshow',
+        //   state: { userPhotoUrls, interval: Number(interval) }
+        // })
     })
   }
+
+
   
   setUpForm =
     <form onSubmit={this.handleSubmit} className="setup-container">
@@ -111,19 +116,30 @@ class Setup extends Component {
 
       <button type='submit'>Start session</button>
     </form>
+
+
+      // vvv this should be removed once Slideshow starts receiving props.photos and props.iterationLength
+    mockPhotos = [
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Foot_on_white_background.jpg/345px-Foot_on_white_background.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/3/32/Human-Hands-Front-Back.jpg',
+        'https://upload.wikimedia.org/wikipedia/en/e/e8/Samfacejr.jpg',
+        'https://static.turbosquid.com/Preview/2015/02/17__07_42_52/Leg_render_1.jpg5f4dfaef-f39c-43ea-afe2-522e3788b169Original.jpg',
+        'https://media.ottobock.com/_web-site/prosthetics/upper-limb/silicone-cover/images/_35236_dsc0088_169_4c_wb_1_1_hotspot_zoom.jpg'
+    ]
+    
+
   
   redirectToSlideshow = 
     <Redirect to={{
       pathname: '/slideshow',
-      dataForSlideshow: {
-        photos: [],
-        iterationLength: 0,
-        // DANE
+      state: {
+        photos: this.mockPhotos,
+        iterationLength: 2000,
       } 
     }}/>
 
   render() {
-    const { category, interval, numberOfPhotos } = this.state;
+    // const { category, interval, numberOfPhotos } = this.state;
     return (
       <>
         {
@@ -137,31 +153,5 @@ class Setup extends Component {
   }
 }
 
-export default withRouter(Setup);
-
-          // <label htmlFor='category'>What would you like to sketch?</label>
-          // <select name='category' id='category' onChange={this.handleChange} value='category'>
-          //   <option value=''>Choose a category</option>
-          //   <option value='hands'>Hands</option>
-          //   <option value='feet'>Feet</option>
-          //   <option value='face'>Face</option>
-          //   <option value='figure'>Figure</option>
-          //   <option value='other'>Other</option>
-          //   <option value='all'>All</option>
-          // </select>
-          // <label htmlFor='time'>How long would you like to see each photo for?</label>
-          // <select name='time' id='time' onChange={this.handleChange} value='time'>
-          //   <option value=''>Chose a time interval</option>
-          //   <option value='30000'>30 seconds</option>
-          //   <option value='60000'>60 seconds</option>
-          //   <option value='12000'>2 minutes</option>
-          //   <option value='180000'>3 minutes</option>
-          //   <option value='300000'>5 minutes</option>
-          // </select>
-          // <label htmlFor='numberOfPhotos'>How many images would you like to sketch?</label>
-          // <select name='numberOfPhotos' id='numberOfPhotos' onChange={this.handleChange} value='numberOfPhotos'>
-          //   <option value=''>Choose the number of photos</option>
-          //   <option value='10'>10</option>
-          //   <option value='15'>15</option>
-          //   <option value='20'>20</option>
-          // </select>
+// export default withRouter(Setup);
+export default Setup;
