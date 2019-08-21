@@ -8,18 +8,22 @@
 
 /* APP */
 .app-container {
-  display:flex;
+  display: flex;
   flex-direction: column;
-  justify-content: space-evenly
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 /* NAVBAR */
+
 nav {
   display: flex;
   justify-content: center;
-  margin-top: 1em;
+  margin-top: 0.9em;
   height: var(--navbar-height);
   text-align: center;
+  margin-bottom: 0;
+  
 }
 
 nav ul {
@@ -90,26 +94,48 @@ nav ul li {
 /* GALLERY */
 
 .gallery-container {
-  height: var(--content-height);
-  margin-bottom: 0;
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.gallery-container header {
+  margin-top: 4vh;
+}
+
 
 .user-photos-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
-  
+  justify-content: center;
+  width: 100%;
 }
 
 .photo-container {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  width: 100px;
+  width: 7.8em;
   border: #cccc 1px solid;
   border-radius: 5px;
   margin: 5px;
+}
+
+.photo-container p {
+  font-weight: bold;
+  color: orangered;
+  text-align: right;
+  border: none;
+  margin-top: 0em;
+  margin-right: 0.4em;
+  margin-bottom: 0.2em;
+}
+
+.photo-container img {
+  object-fit: cover;
+  height: 5em;
+  width: 100%;
 }
 
 /* .image-container {
@@ -189,6 +215,8 @@ nav ul li {
   align-self: center;
   background-color: var(--button-color);
   border: none;
+  margin-top: 1.3em;
+  margin-bottom: 1.5em;
 }
 
 
@@ -201,6 +229,7 @@ nav ul li {
   align-items: center;
   height: var(--content-height);
   margin-bottom: 0;
+  justify-content: flex-end;
 }
 
 .slide-show-photo-container {

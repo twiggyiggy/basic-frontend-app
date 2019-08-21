@@ -5,11 +5,16 @@ import AddPhoto from '../components/AddPhoto';
 
 function Gallery() {
   return (
-    <div className="gallery-container">
-      <AddPhoto />
-      <UserPhotos/>
+    <>
+      <div className="gallery-container">
+        <header>
+          <h1>Bozo</h1>
+        </header>
+        <AddPhoto />
+        <UserPhotos/>
+      </div>
       <Navbar/>
-    </div>
+    </>
   )
 }
 

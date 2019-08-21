@@ -29,12 +29,10 @@ export class UserPhotos extends Component {
                     {userPhotos.length > 0 ? userPhotos.map(photo => {
                         return (
                             <article key={photo._id} className='photo-container'>
-                                <div className='image-container'>
-                                    <img src={photo.imageUrl} alt='users file' />
-                                </div>
-                                <button onClick={() => {
-                                    this.handleDeleteClick(photo._id)
-                                }}>Delete</button>
+                                <img src={photo.imageUrl} alt='users file' />
+                                <p onClick={() => {this.handleDeleteClick(photo._id)}}>
+                                    ⃠
+                                </p>
                             </article>
                         )
                     }) : <p>Loading...</p>}
