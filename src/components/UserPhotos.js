@@ -1,39 +1,14 @@
 import React, { Component } from 'react';
 import apiService from '../services/api-service.js'
-import authService from '../services/auth-service';
+// import authService from '../services/auth-service';
 import withAuth from '../components/withAuth';
 
 export class UserPhotos extends Component {
 
-    // // state = {
-    // //     userPhotos: []
-    // // }
-
-    // componentDidMount = async () => {
-    //     const user = await authService.getCurrentUser()
-    //     .then(response => response)
-    //     apiService.getUserPhotos(user)
-    //     .then(response => (
-    //         this.setState({
-    //             userPhotos: response.data
-    //         })
-    //     ))
-    // }
-    // getCurrentUser - siega do DB po obiekt uzytkownika (response what?), getUSerPhotos - sega do DB po array z obiektami zdjec, w response zachowuje je w stanie komponentu - pozniej do wyswietlenia na stronie
-
     handleDelete = (photoId) => {
         apiService.removePhoto(photoId)
-<<<<<<< HEAD
         .then(()=> this.props.getUpdatedGalleryPhotos())
     }
-
-    
-=======
-        .then(
-            this.props.getUpdatedGalleryPhotos()
-        )
-    }
->>>>>>> dev
 
     render() {
         const {userPhotos} = this.props;
@@ -45,15 +20,9 @@ export class UserPhotos extends Component {
                         return (
                             <article key={photo._id} className='photo-container'>
                                 <img src={photo.imageUrl} alt='users file' />
-<<<<<<< HEAD
                                 <button onClick={() => {
                                     this.handleDelete(photo._id)
                                 }}>Delete</button>
-=======
-                                <p onClick={() => {this.handleDelete(photo._id)}}>
-                                    ⃠
-                                </p>
->>>>>>> dev
                             </article>
                         )
                         else return ""
