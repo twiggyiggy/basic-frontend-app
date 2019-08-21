@@ -9,7 +9,8 @@ export class Slideshow extends Component {
         secondsLeftInCycle: this.props.location.state.iterationLength/1000,
         currentPhotoIndex: 0,
         maxPhotoIndex: this.props.location.state.photosFromUser.length-1,
-        playing: true
+        playing: true,
+        finished: false
     }
 
     componentDidMount = () => {
@@ -28,6 +29,7 @@ export class Slideshow extends Component {
     }
     
     startTimer = () => {
+        console.log('hello')
         this.timer = setInterval(
             () => this.tick(),
             1000
@@ -48,7 +50,7 @@ export class Slideshow extends Component {
     startNextCycle = () => {
         let {cycleLength, currentPhotoIndex, maxPhotoIndex} = this.state;
         if (currentPhotoIndex === maxPhotoIndex) {
-            currentPhotoIndex = 0
+            this.setState({finished: true})
         } else {
             currentPhotoIndex++
         }
@@ -59,15 +61,20 @@ export class Slideshow extends Component {
     }
 
     startPreviousCycle = () => {
-        let {cycleLength, currentPhotoIndex, maxPhotoIndex} = this.state;
-        if (currentPhotoIndex === 0) {
-            currentPhotoIndex = maxPhotoIndex
-        } else {
-            currentPhotoIndex--
+        let {cycleLength, currentPhotoIndex} = this.state;
+        if (currentPhotoIndex !== 0) {
+            this.setState({
+                currentPhotoIndex: currentPhotoIndex-1,
+                secondsLeftInCycle: cycleLength
+            })
         }
+    }
+
+    restartSlideshow = () => {
         this.setState({
-            currentPhotoIndex: currentPhotoIndex,
-            secondsLeftInCycle: cycleLength
+            currentPhotoIndex: 0,
+            secondsLeftInCycle: this.state.cycleLength,
+            finished: false
         })
     }
 
@@ -106,24 +113,48 @@ export class Slideshow extends Component {
             alt={'photo number '+ (index+1)}
         />
     }
+
+    slideshow = () =>
+        <div className="slide-show-container">
+            <div className="slide-show-photo-container">
+                {this.showPhotoAtIndex(this.state.currentPhotoIndex)}
+            </div>
+            <div className="slide-show-counter">
+                {this.displayTimeRemaining()}
+            </div>
+            <div className="slide-show-controls">
+                <button onClick={this.startPreviousCycle}>⟸</button>
+                <button onClick={this.togglePause}>||</button>
+                <button onClick={this.startNextCycle}>⟹</button>
+            </div>
+        </div>
+
+    endScreen = () =>
+        <div className="slide-show-endscreen">
+            <h1>Finished!</h1>
+            <button onClick={this.restartSlideshow}>One more time?</button>
+            <section>
+                    {
+                        this.state.photos.map(photo => {
+                        return (
+                            <article key={photo}>
+                                <img src={photo} alt='users file' />
+                            </article>
+                        )
+                        })
+                    }
+            </section>
+        </div>
     
     render() {
-        const {currentPhotoIndex} = this.state;
+        const {finished} = this.state;
         return (
             <>
-                <div className="slide-show-container">
-                    <div className="slide-show-photo-container">
-                        {this.showPhotoAtIndex(currentPhotoIndex)}
-                    </div>
-                    <div className="slide-show-counter">
-                        {this.displayTimeRemaining()}
-                    </div>
-                    <div className="slide-show-controls">
-                        <button onClick={this.startPreviousCycle}>⟸</button>
-                        <button onClick={this.togglePause}>||</button>
-                        <button onClick={this.startNextCycle}>⟹</button>
-                    </div>
-                </div>
+                {
+                    finished
+                    ? this.endScreen()
+                    : this.slideshow()
+                }
                 <Navbar/>
             </>
         )

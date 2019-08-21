@@ -279,6 +279,7 @@ nav ul li {
   width: 100%;
 }
 
+
 /* .image-container {
   overflow: hidden;
 } */
@@ -411,4 +412,31 @@ nav ul li {
   background-color: var(--button-color);
 }
 
+.slide-show-endscreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  width: 40vw;
+}
 
+.slide-show-endscreen section {
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.slide-show-endscreen article {
+  display: flex;
+  width: 5em;
+  height: 5em;
+  border: #cccc 1px solid;
+  border-radius: 5px;
+  margin: 0.2em;
+
+}
+
+.slide-show-endscreen img {
+  object-fit: cover
+}
