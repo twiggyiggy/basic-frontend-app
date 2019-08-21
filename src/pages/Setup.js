@@ -29,6 +29,7 @@ class Setup extends Component {
     const userPhotos = response.data
     const userPhotoUrls = userPhotos
       .filter(photoObj => photoObj ? true : false)
+      .filter(photoObj => photoObj.category === this.state.category || this.state.category === 'all' ? true : false)
       .map(photoObj => photoObj.imageUrl)
     
     this.setState({
@@ -47,6 +48,9 @@ class Setup extends Component {
   
   setUpForm =
     <form onSubmit={this.handleSubmit} className="setup-container">
+      <header>
+        <h1>Bozo</h1>
+      </header>
       <h5>What would you like to sketch?</h5>
       <div>
         <input type='radio' id='hands' name='category' value='hands' onChange={this.handleChange}/>
@@ -105,7 +109,6 @@ class Setup extends Component {
 
   render() {
     const { photosFromUser } = this.state;
-    console.log(photosFromUser);
     return (
       <>
         {
