@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom' 
+import { Redirect } from 'react-router-dom' 
 
 import Navbar from '../components/Navbar.js';
 import authService from '../services/auth-service.js';
@@ -27,10 +27,15 @@ class Setup extends Component {
     const user = await authService.getCurrentUser()
     const response = await apiService.getUserPhotos(user)
     const userPhotos = response.data
+    console.log('setup handleSubmit', userPhotos)
     const userPhotoUrls = userPhotos
-      .filter(photoObj => photoObj ? true : false)
-      .filter(photoObj => photoObj.category === this.state.category || this.state.category === 'all' ? true : false)
+      .filter(photoObj => photoObj.category === this.state.category || this.state.category === 'all')
       .map(photoObj => photoObj.imageUrl)
+    
+    this.setState({
+      wasFormSubmitted: true,
+      photosFromUser: userPhotoUrls,
+    })
     if (userPhotoUrls.length === 0) {
       console.error("userPhotoUrls is empty")
     } else {
@@ -51,10 +56,7 @@ class Setup extends Component {
   
   setUpForm =
     <form onSubmit={this.handleSubmit} className="setup-container">
-      <header>
-        <h1>Bozo</h1>
-      </header>
-      <h5>What would you like to sketch?</h5>
+      <h3>What do you want to sketch?</h3>
       <div>
         <input type='radio' id='hands' name='category' value='hands' onChange={this.handleChange}/>
         <label htmlFor='hands'>hands</label>
@@ -75,7 +77,7 @@ class Setup extends Component {
         <label htmlFor='all'>All</label>
       </div>
 
-      <h5>How long would you like to see each photo for?</h5>
+      <h3>What time interval?</h3>
       <div>
         <input type='radio' id='30000' name='interval' value='30000' onChange={this.handleChange}/>
         <label htmlFor='30000'>30 seconds</label>
@@ -93,7 +95,7 @@ class Setup extends Component {
         <label htmlFor='300000'>5 minutes</label>
       </div>
 
-      <h5>How many photos would you like to sketch?</h5>
+      <h3>How many images?</h3>
       <div>
         <input type='radio' id='10' name='numberOfPhotos' value='10' onChange={this.handleChange}/>
         <label htmlFor='10'>10</label>
@@ -105,7 +107,7 @@ class Setup extends Component {
         <label htmlFor='20'>20</label>
       </div>
 
-      <button type='submit'>Start session</button>
+      <button type='submit'>Get sketching!</button>
     </form>
     
     
@@ -114,6 +116,7 @@ class Setup extends Component {
     const { photosFromUser } = this.state;
     return (
       <>
+        <h2>Session setup:</h2> 
         {
           this.state.wasFormSubmitted
           ? <Redirect to={{

@@ -13,13 +13,15 @@ class Gallery extends React.Component {
   getGalleryPhotos = async () => {
     const user = await authService.getCurrentUser()
     .then(response => response)
+
     
     apiService.getUserPhotos(user)
-    .then(response => (
+    .then(response => {
+      console.log('apiService.getUserPhotos:', response)
         this.setState({
             userPhotos: response.data.reverse()
         })
-    ))
+      })
   }
 
 

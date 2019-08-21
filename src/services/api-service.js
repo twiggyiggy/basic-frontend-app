@@ -3,10 +3,12 @@ import axios from 'axios';
 class ApiService {
     constructor () {
         this.api = axios.create({
-            baseURL: 'http://localhost:4000/api/',
+            baseURL: `${process.env.REACT_APP_BACKEND_DOMAIN}/api/`, 
             withCredentials: true,
         })
     }
+
+    
 
     getUserPhotos = async (user) => {
         const userId = user._id // method accepts user object as arg - with _id property to be extracted
@@ -19,12 +21,12 @@ class ApiService {
         return this.api.post('/photos/add', newPhoto)
         .then(response => response);
       }
-
-    removePhoto(photoId) {
-        return this.api.delete(`photos/${photoId}/delete`)
-        .then(response => response)
-    }
+      
+      removePhoto(photoId) {
+          return this.api.delete(`photos/${photoId}/delete`)
+          .then(response => response)
+        }
 }
-
+        
 const apiService = new ApiService();
 export default apiService;
