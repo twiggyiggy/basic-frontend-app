@@ -2,7 +2,9 @@
 :root {
   --content-height: 90vh;
   --navbar-height: 10vh;
+  --button-color: sandybrown;
 }
+
 
 /* APP */
 .app-container {
@@ -38,6 +40,7 @@ nav ul li {
   align-items: center;
   margin-left: 10vw;
   margin-right: 10vw;
+  margin-bottom: 0;
 }
 
 .home-container h1 {
@@ -88,6 +91,7 @@ nav ul li {
 
 .gallery-container {
   height: var(--content-height);
+  margin-bottom: 0;
 }
 
 .user-photos-container {
@@ -123,17 +127,25 @@ nav ul li {
 .setup-container {
   display: flex;
   flex-direction: column;
-  margin-left: 5vw;
-  margin-right: 5vw;
-  /* width: 90vw; */
-  /* flex-wrap: wrap; */
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 16.1em;
+  margin-bottom: 0;
+}
 
+.setup-container header {
+  margin-top: 4vh;
+}
+
+.setup-container h1 {
+  text-align: center;
+  margin-bottom: 0;
 }
 
 .setup-container div {
   display: flex;
   flex-wrap: wrap;
-  justify-content:  space-evenly;
+  justify-content: center;
   align-content: center;
   margin-bottom: 0.5em;
 }
@@ -155,7 +167,7 @@ nav ul li {
   color: black;
   margin-left: 0.2em;
   margin-right: 0.2em;
-  min-width: 7em;
+  min-width: 6.3em;
   text-align: center;
   background-color: rgb(225, 230, 243);
 }
@@ -166,15 +178,17 @@ nav ul li {
 }
 
 .setup-container h5 {
-  font-size: 0.9em;
+  font-size: 1em;
   text-align: center;
-  margin-top: 0.6em;
-  margin-bottom: 0.9em;
+  margin-top: 0.7em;
+  margin-bottom: 0.5em;
 }
 
 .setup-container button {
   max-width: 80%;
   align-self: center;
+  background-color: var(--button-color);
+  border: none;
 }
 
 
@@ -186,6 +200,7 @@ nav ul li {
   flex-direction: column;
   align-items: center;
   height: var(--content-height);
+  margin-bottom: 0;
 }
 
 .slide-show-photo-container {
@@ -213,6 +228,8 @@ nav ul li {
   font-size: 0.7em;
   margin-left: 0.5em;
   margin-right: 0.5em;
+  border: none;
+  background-color: var(--button-color);
 }
 
 

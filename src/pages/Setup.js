@@ -44,6 +44,9 @@ class Setup extends Component {
   
   setUpForm =
     <form onSubmit={this.handleSubmit} className="setup-container">
+      <header>
+        <h1>Bozo</h1>
+      </header>
       <h5>What would you like to sketch?</h5>
       <div>
         <input type='radio' id='hands' name='category' value='hands' onChange={this.handleChange}/>
