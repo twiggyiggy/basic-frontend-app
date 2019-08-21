@@ -16,9 +16,7 @@ class AddPhoto extends Component {
   }
 
   handleSubmit = (event) => {
-    const { imageUrl, category } = this.state;
-    console.log({ imageUrl, category});
-    
+    const { imageUrl, category } = this.state;    
     event.preventDefault();
     apiService.addOnePhoto({
       imageUrl,

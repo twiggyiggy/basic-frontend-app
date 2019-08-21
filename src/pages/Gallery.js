@@ -36,7 +36,7 @@ class Gallery extends React.Component {
          <h1>Bozo</h1>
         </header>
         <AddPhoto getUpdatedGalleryPhotos={this.getGalleryPhotos} />
-        <UserPhotos userPhotos={userPhotos}/>
+        <UserPhotos getUpdatedGalleryPhotos={this.getGalleryPhotos} userPhotos={userPhotos}/>
         <Navbar/>
       </div>
   )
