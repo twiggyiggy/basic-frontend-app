@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom' 
-import { thisExpression } from '@babel/types';
 
-import Navbar from '../components/Navbar.js'
+import Navbar from '../components/Navbar.js';
 import authService from '../services/auth-service.js';
 import apiService from '../services/api-service.js';
 
 class Setup extends Component {
-  
-  allUserPhotos = []
 
   state = {
     category: '',
     interval: 2000,
     numberOfPhotos: '',
     wasFormSubmitted: false,
+    photosFromUser: [],
   }
 
   handleChange = (event) => {
@@ -24,11 +22,15 @@ class Setup extends Component {
     })
   }
 
-  handleSubmit = (event) => {
-    // const { category, interval, numberOfPhotos } = this.state;
+  handleSubmit = async (event) => {
     event.preventDefault();
+    const user = await authService.getCurrentUser()
+    const response = await apiService.getUserPhotos(user)
+    const userPhotos = response.data
+    const userPhotoUrls = userPhotos.map(photoObj => photoObj.imageUrl)
     this.setState({
-      wasFormSubmitted: true
+      wasFormSubmitted: true,
+      photosFromUser: userPhotoUrls,
     })
   }
 
@@ -38,27 +40,6 @@ class Setup extends Component {
     // loop through the photos array - target photos at the selected indexes
     // push each targeted photo into new array: slideshowPhotos
   }
-  
-  componentDidMount = async () => {
-    const user = await authService.getCurrentUser()
-    .then(response => response)
-    apiService.getUserPhotos(user)
-    // .then(response => response)
-    .then((response) => {
-        const userPhotos = response.data
-        // const { interval } = this.state;
-        // console.log(interval)
-        // this.randomizePhotos(userPhotos, this.state.numberOfPhotos)
-        const userPhotoUrls = userPhotos.map(photoObj => photoObj.imageUrl)
-        console.log(userPhotoUrls)
-        this.allUserPhotos = userPhotoUrls
-        // this.props.history.push({ 
-        //   pathname: '/slideshow',
-        //   state: { userPhotoUrls, interval: Number(interval) }
-        // })
-    })
-  }
-
 
   
   setUpForm =
@@ -127,24 +108,22 @@ class Setup extends Component {
         'https://media.ottobock.com/_web-site/prosthetics/upper-limb/silicone-cover/images/_35236_dsc0088_169_4c_wb_1_1_hotspot_zoom.jpg'
     ]
     
-
-  
-  redirectToSlideshow = 
-    <Redirect to={{
-      pathname: '/slideshow',
-      state: {
-        photos: this.mockPhotos,
-        iterationLength: 2000,
-      } 
-    }}/>
+    
 
   render() {
-    // const { category, interval, numberOfPhotos } = this.state;
+    const { photosFromUser } = this.state;
     return (
       <>
         {
           this.state.wasFormSubmitted
-          ? this.redirectToSlideshow
+          ? <Redirect to={{
+            pathname: '/slideshow',
+            state: {
+              photos: this.mockPhotos,
+              iterationLength: this.state.interval,
+              photosFromUser: photosFromUser,
+            } 
+          }}/>
           : this.setUpForm
         }
         <Navbar/>
@@ -153,5 +132,4 @@ class Setup extends Component {
   }
 }
 
-// export default withRouter(Setup);
 export default Setup;

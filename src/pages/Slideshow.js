@@ -22,18 +22,14 @@ export class Slideshow extends Component {
 
 
     // vvv this should be uncommented once Slideshow starts receiving props.photos and props.iterationLength
-    constructor(props) {
-        super(props);
-        // console.log(props)
-        const { photos, iterationLength } = props.location.state;
+
         // console.log(photos)
         // console.log(iterationLength)
-        this.state = {
-            photos,
-            iterationLength,
-            currentPhotoIndex: 0,
-            playing: true
-        }
+    state = {
+        photos: this.props.location.state.photosFromUser,
+        iterationLength: this.props.location.state.iterationLength,
+        currentPhotoIndex: 0,
+        playing: true
     }
     
     componentWillUnmount = () => clearInterval(this.timer)
