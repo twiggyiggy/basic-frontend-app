@@ -79,6 +79,13 @@ export class Slideshow extends Component {
             })
         }
     }
+
+    displayTimeRemaining = () => {
+        const {secondsLeftInCycle} = this.state;
+        const minutes = Math.floor(secondsLeftInCycle/60);
+        const seconds = secondsLeftInCycle % 60
+        return <>{minutes}:{seconds}</>
+    }
     
     
     render() {
@@ -86,7 +93,9 @@ export class Slideshow extends Component {
             <>
                 <div className="slide-show-container">
                     <div className="slide-show-photo-container">
-                        {this.state.secondsLeftInCycle} s rem on photo @ index {this.state.currentPhotoIndex}
+                    </div>
+                    <div className="slide-show-counter">
+                        {this.displayTimeRemaining} remaining on photo @ index {this.state.currentPhotoIndex}
                     </div>
                     <div className="slide-show-controls">
                         <button onClick={this.startPreviousCycle}>⟸</button>
