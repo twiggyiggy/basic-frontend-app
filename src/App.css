@@ -36,6 +36,39 @@ nav ul li {
   margin-right: 0.5em;
 }
 
+/* AUTH */
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form header {
+  margin-top: 4vh;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+.auth-form label {
+  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  text-align: center;
+}
+
+.auth-form input {
+
+}
+
+.auth-form input[type="submit"] {
+  max-width: 80%;
+  align-self: center;
+  background-color: var(--button-color);
+  border: none;
+  margin-top: 1.3em;
+  margin-bottom: 1.5em;
+}
+
 /* HOME  */
 
 .home-container {
@@ -102,6 +135,7 @@ nav ul li {
 
 .gallery-container header {
   margin-top: 4vh;
+  margin-bottom: 0.5em;
 }
 
 .gallery-container form {
@@ -111,10 +145,6 @@ nav ul li {
   margin-bottom: 0;
   width: 14.7em;
 
-}
-
-.gallery-container header {
-  margin-bottom: 0.5em;
 }
 
 .gallery-container h1 {

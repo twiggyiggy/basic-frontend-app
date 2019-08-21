@@ -47,6 +47,9 @@ class Signup extends Component {
       return (
       <>
         <form onSubmit={this.handleFormSubmit} className="auth-form">
+          <header>
+            <h1>Bozo</h1>
+          </header>
           <label htmlFor='username'>Username:</label>
           <input id='username' type='text' name='username' value={username} onChange={this.handleChange}/>
           <label htmlFor='email'>Email:</label>
