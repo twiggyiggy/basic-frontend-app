@@ -109,9 +109,7 @@ export class Slideshow extends Component {
                 <div className="slide-show-container">
                     <div className="slide-show-photo-container">
                         {
-                            this.state.photos.length === 0 
-                            ? <h4>No photos in this category.</h4>
-                            : this.showPhotoAtIndex(this.state.currentPhotoIndex)
+                            this.showPhotoAtIndex(this.state.currentPhotoIndex)
                         }
                     </div>
                     <div className="slide-show-controls">

@@ -31,11 +31,14 @@ class Setup extends Component {
       .filter(photoObj => photoObj ? true : false)
       .filter(photoObj => photoObj.category === this.state.category || this.state.category === 'all' ? true : false)
       .map(photoObj => photoObj.imageUrl)
-    
-    this.setState({
-      wasFormSubmitted: true,
-      photosFromUser: userPhotoUrls,
-    })
+    if (userPhotoUrls.length === 0) {
+      console.error("userPhotoUrls is empty")
+    } else {
+      this.setState({
+        wasFormSubmitted: true,
+        photosFromUser: userPhotoUrls,
+      })
+    }
   }
 
   randomizePhotos = (photos, numberOfPhotos) => {
