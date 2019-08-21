@@ -4,10 +4,11 @@ import Navbar from '../components/Navbar';
 export class Slideshow extends Component {
     
     state = {
-        cycleLength: 5,
-        secondsLeftInCycle: 5,
+        photos: this.props.location.state.photosFromUser,
+        cycleLength: this.props.location.state.iterationLength/1000,
+        secondsLeftInCycle: this.props.location.state.iterationLength/1000,
         currentPhotoIndex: 0,
-        maxPhotoIndex: 5,
+        maxPhotoIndex: this.props.location.state.photosFromUser.length-1,
         playing: true
     }
 
@@ -20,6 +21,10 @@ export class Slideshow extends Component {
         if (secondsLeftInCycle === 0) {
             this.startNextCycle();
         }
+    }
+
+    componentWillUnmount = () => {
+        this.stopTimer();
     }
     
     startTimer = () => {
@@ -95,15 +100,23 @@ export class Slideshow extends Component {
             : number
     }
     
+    showPhotoAtIndex (index) {
+        return <img 
+            src={this.state.photos[index]} 
+            alt={'photo number '+ (index+1)}
+        />
+    }
     
     render() {
+        const {currentPhotoIndex} = this.state;
         return (
             <>
                 <div className="slide-show-container">
                     <div className="slide-show-photo-container">
+                        {this.showPhotoAtIndex(currentPhotoIndex)}
                     </div>
                     <div className="slide-show-counter">
-                        {this.displayTimeRemaining()} remaining on photo @ index {this.state.currentPhotoIndex}
+                        {this.displayTimeRemaining()}
                     </div>
                     <div className="slide-show-controls">
                         <button onClick={this.startPreviousCycle}>⟸</button>
