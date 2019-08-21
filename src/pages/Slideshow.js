@@ -54,7 +54,16 @@ export class Slideshow extends Component {
     }
 
     startPreviousCycle = () => {
-        let {cycleLength, currentPhotoIndex} = this.state;
+        let {cycleLength, currentPhotoIndex, maxPhotoIndex} = this.state;
+        if (currentPhotoIndex === 0) {
+            currentPhotoIndex = maxPhotoIndex
+        } else {
+            currentPhotoIndex--
+        }
+        this.setState({
+            currentPhotoIndex: currentPhotoIndex,
+            secondsLeftInCycle: cycleLength
+        })
     }
 
     togglePause = () => {
@@ -80,6 +89,7 @@ export class Slideshow extends Component {
                         {this.state.secondsLeftInCycle} s rem on photo @ index {this.state.currentPhotoIndex}
                     </div>
                     <div className="slide-show-controls">
+                        <button onClick={this.startPreviousCycle}>⟸</button>
                         <button onClick={this.togglePause}>||</button>
                         <button onClick={this.startNextCycle}>⟹</button>
                     </div>
