@@ -2,12 +2,50 @@
 :root {
   --content-height: 90vh;
   --navbar-height: 10vh;
-  --button-color: #156898;
+  --text-color: #060956;
+  --background-color: #ffe8e81a;
+  --header-color: #ff207d26;
+  --button-color: #ff0c44b8;
+  --radio-buttons-color: rgba(255, 224, 224, 0.34);
+  --radio-buttons-text-color: #400144a8;
+  --radio-buttons-color-checked: #e20101;
+  --radio-buttons-text-color-checked: white;
   --link-color: #00144a;
-  --radio-buttons-color: rgba(255, 244, 239, 0.53);
-  --radio-buttons-color-checked: #156898;
+  --link-visited: #ff3a8ca1;
+  --logout-color: #ff3a8ca1;
 }
 
+body {
+  background-color: var(--background-color);
+}
+
+h1 {
+  color: var(--header-color)
+}
+
+h2, h3, h4, h5, a {
+  color: var(--text-color);
+}
+
+a {
+  color: var(--link-color);
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
+input[type="radio"], label {
+  color: var(--radio-buttons-text-color)
+}
+
+input[type="radio"]:checked + label {
+  color: var(--radio-buttons-color-checked)
+}
+
+li {
+  color: var(--logout-color)
+}
 
 /* APP */
 .app-container {
@@ -18,7 +56,6 @@
 }
 
 .app-container a {
-  color: var(--link-color)
 }
 
 /* NAVBAR */
@@ -215,7 +252,6 @@ nav ul li {
 
 .photo-container p {
   font-weight: bold;
-  color: orangered;
   text-align: right;
   border: none;
   margin-top: 0em;
@@ -281,9 +317,8 @@ nav ul li {
   padding: 0.2em;
   font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   font-size: 0.8em;
-  font-weight: 300;
+  font-weight: 400;
   border-radius: 0.5em;
-  color: black;
   margin-left: 0.2em;
   margin-right: 0.2em;
   min-width: 6.3em;
@@ -292,7 +327,7 @@ nav ul li {
 }
 
 .setup-container input[type="radio"]:checked + label {
-  color: white;
+  color: var(--radio-buttons-text-color-checked);
   background-color: var(--radio-buttons-color-checked);
 }
 
