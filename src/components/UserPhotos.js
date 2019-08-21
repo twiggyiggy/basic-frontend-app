@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import apiService from '../services/api-service.js'
-import authService from '../services/auth-service'
+import apiService from '../services/api-service';
+// import apiService from '../services/api-service.js'
+// import authService from '../services/auth-service'
 
 export class UserPhotos extends Component {
 
@@ -20,9 +21,14 @@ export class UserPhotos extends Component {
     // }
     // getCurrentUser - siega do DB po obiekt uzytkownika (response what?), getUSerPhotos - sega do DB po array z obiektami zdjec, w response zachowuje je w stanie komponentu - pozniej do wyswietlenia na stronie
 
+    handleDeleteClick = (photoId) => {
+        apiService.
+    }
+
 
     render() {
         const {userPhotos} = this.props;
+        console.log(userPhotos)
         return (
             <>
                 <section className='user-photos-container'>

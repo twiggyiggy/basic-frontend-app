@@ -3,10 +3,12 @@ import axios from 'axios';
 class ApiService {
     constructor () {
         this.api = axios.create({
-            baseURL: 'http://localhost:4000/api/',
+            baseURL: `${process.env.REACT_APP_BACKEND_DOMAIN}/api/`, 
             withCredentials: true,
         })
     }
+
+    
 
     getUserPhotos(user) {
         const userId = user._id // method accepts user object as arg - with _id property to be extracted
