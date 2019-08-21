@@ -22,6 +22,7 @@ export default class Home extends Component {
           <div className='home-image-container'>
             <img src="https://i.pinimg.com/originals/85/22/71/85227135996b4b11ee2ddbbae0a62007.jpg" alt="man perching on box"/>
             <img src="https://i.pinimg.com/originals/c2/b4/22/c2b422d5c0cb01d2619eda79951614b3.jpg" alt="man perching on box"/>
+            <img src="https://i.pinimg.com/originals/35/8d/de/358dde0abf6037061b3d3308cb14073d.jpg" alt="man perching on box"/>
           </div>
           <h4>Improve your sketching skills</h4>
           <p>

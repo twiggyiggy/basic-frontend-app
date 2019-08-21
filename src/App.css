@@ -2,9 +2,46 @@
 :root {
   --content-height: 90vh;
   --navbar-height: 10vh;
-  --button-color: sandybrown;
+  --text-color: #060956;
+  --background-color: #ffe8e81a;
+  --header-color: #ff207d26;
+  --button-color: #ff0c44b8;
+  --radio-buttons-color: rgba(255, 224, 224, 0.34);
+  --radio-buttons-text-color: #400144a8;
+  --radio-buttons-color-checked: #e20101;
+  --radio-buttons-text-color-checked: white;
+  --link-color: #00144a;
+  --link-visited: #ff3a8ca1;
+  --logout-color: #ff3a8ca1;
 }
 
+h1 {
+  color: var(--header-color)
+}
+
+h2, h3, h4, h5, a {
+  color: var(--text-color);
+}
+
+a {
+  color: var(--link-color);
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
+input[type="radio"], label {
+  color: var(--radio-buttons-text-color)
+}
+
+input[type="radio"]:checked + label {
+  color: var(--radio-buttons-color-checked)
+}
+
+li {
+  color: var(--logout-color)
+}
 
 /* APP */
 .app-container {
@@ -28,6 +65,7 @@ h2 {
 h3 {
   font-weight: bold;
   font-size: 1.5em;
+.app-container a {
 }
 
 /* NAVBAR */
@@ -52,6 +90,39 @@ nav ul li {
   margin-right: 0.5em;
 }
 
+/* AUTH */
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form header {
+  margin-top: 4vh;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+.auth-form label {
+  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  text-align: center;
+}
+
+.auth-form input {
+
+}
+
+.auth-form input[type="submit"] {
+  max-width: 80%;
+  align-self: center;
+  background-color: var(--button-color);
+  border: none;
+  margin-top: 1.3em;
+  margin-bottom: 1.5em;
+}
+
 /* HOME  */
 
 .home-container {
@@ -63,13 +134,20 @@ nav ul li {
   margin-bottom: 0;
 }
 
+.home-container header {
+  margin-top: 4vh;
+  margin-bottom: 0.2em;
+  text-align: center;
+}
+
 .home-container h1 {
-  margin-top: 1em;
+  margin-bottom: 0.2em;
 }
 
 .home-container h4 {
   text-align: center;
   margin-bottom: 0.5em;
+  margin-top: 1.2em;
 }
 
 .home-container section {
@@ -78,8 +156,14 @@ nav ul li {
 }
 
 .home-container button {
-  margin-left: 0.2em;
-  margin-right: 0.2em;
+  max-width: 80%;
+  align-self: center;
+  background-color: var(--button-color);
+  border: none;
+  margin-top: 1.3em;
+  margin-bottom: 1.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 
 .home-container p {
@@ -92,8 +176,10 @@ nav ul li {
 
 .home-image-container {
   display: flex;
+  align-items: center;
   height: 50vh;
-  justify-content: space-around;
+  width: 100vw;
+  justify-content: center;
 }
 
 .home-image-container img {
@@ -103,14 +189,15 @@ nav ul li {
 
 @media (max-width: 768px) {
   .home-image-container {
-    height: 30vh;
+    height: 50vh;
+    overflow: overlay;
   }
 }
 
 /* GALLERY */
 
 .gallery-container {
-  width: 70vw;
+  width: 90vw;
   display: flex;
   font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   flex-direction: column;
@@ -119,6 +206,7 @@ nav ul li {
 
 .gallery-container header {
   margin-top: 4vh;
+  margin-bottom: 0.5em;
 }
 
 .gallery-container form {
@@ -128,10 +216,6 @@ nav ul li {
   margin-bottom: 0;
   width: 14.7em;
 
-}
-
-.gallery-container header {
-  margin-bottom: 0.5em;
 }
 
 .gallery-container h1 {
@@ -151,6 +235,15 @@ nav ul li {
   font-weight: 300;
 }
 
+.gallery-container button {
+  max-width: 80%;
+  align-self: center;
+  background-color: var(--button-color);
+  border: none;
+  margin-top: 1.3em;
+  margin-bottom: 1.5em;
+}
+
 .user-photos-container {
   display: flex;
   flex-direction: row;
@@ -162,7 +255,7 @@ nav ul li {
 .photo-container {
   display: flex;
   flex-direction: column;
-  width: 7.8em;
+  width: 16.8em;
   border: #cccc 1px solid;
   border-radius: 5px;
   margin: 5px;
@@ -170,7 +263,6 @@ nav ul li {
 
 .photo-container p {
   font-weight: bold;
-  color: orangered;
   text-align: right;
   border: none;
   margin-top: 0em;
@@ -180,7 +272,7 @@ nav ul li {
 
 .photo-container img {
   object-fit: cover;
-  height: 5em;
+  height: 10em;
   width: 100%;
 }
 
@@ -207,6 +299,8 @@ nav ul li {
 
 .setup-container header {
   margin-top: 4vh;
+  margin-bottom: 0.5em;
+  text-align: center;
 }
 
 .setup-container h1 {
@@ -234,25 +328,28 @@ nav ul li {
   padding: 0.2em;
   font-size: 1em;
   font-weight: 300;
+  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 0.8em;
+  font-weight: 400;
   border-radius: 0.5em;
-  color: black;
   margin-left: 0.2em;
   margin-right: 0.2em;
   min-width: 6.3em;
   text-align: center;
-  background-color: rgb(225, 230, 243);
+  background-color: var(--radio-buttons-color);
 }
 
 .setup-container input[type="radio"]:checked + label {
-  color: white;
-  background-color: rgb(95, 105, 133);
+  color: var(--radio-buttons-text-color-checked);
+  background-color: var(--radio-buttons-color-checked);
+  border:none;
 }
 
 .setup-container h5 {
   font-size: 1em;
   text-align: center;
-  margin-top: 0.7em;
-  margin-bottom: 0.5em;
+  margin-top: 1.2em;
+  margin-bottom: 0.4em;
 }
 
 .setup-container button {
@@ -275,6 +372,11 @@ nav ul li {
   height: var(--content-height);
   margin-bottom: 0;
   justify-content: flex-end;
+}
+
+.slide-show-container h4 {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .slide-show-photo-container {

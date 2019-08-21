@@ -27,8 +27,16 @@ class Setup extends Component {
     const user = await authService.getCurrentUser()
     const response = await apiService.getUserPhotos(user)
     const userPhotos = response.data
+<<<<<<< HEAD
     console.log('setup handleSubmit',userPhotos)
     const userPhotoUrls = userPhotos.map(photoObj => photoObj.imageUrl)
+=======
+    const userPhotoUrls = userPhotos
+      .filter(photoObj => photoObj ? true : false)
+      .filter(photoObj => photoObj.category === this.state.category || this.state.category === 'all' ? true : false)
+      .map(photoObj => photoObj.imageUrl)
+    
+>>>>>>> dev
     this.setState({
       wasFormSubmitted: true,
       photosFromUser: userPhotoUrls,
@@ -45,7 +53,14 @@ class Setup extends Component {
   
   setUpForm =
     <form onSubmit={this.handleSubmit} className="setup-container">
+<<<<<<< HEAD
       <h3>What do you want to sketch?</h3>
+=======
+      <header>
+        <h1>Bozo</h1>
+      </header>
+      <h5>What would you like to sketch?</h5>
+>>>>>>> dev
       <div>
         <input type='radio' id='hands' name='category' value='hands' onChange={this.handleChange}/>
         <label htmlFor='hands'>hands</label>
@@ -98,16 +113,6 @@ class Setup extends Component {
 
       <button type='submit'>Get sketching!</button>
     </form>
-
-
-      // vvv this should be removed once Slideshow starts receiving props.photos and props.iterationLength
-    mockPhotos = [
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Foot_on_white_background.jpg/345px-Foot_on_white_background.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/3/32/Human-Hands-Front-Back.jpg',
-        'https://upload.wikimedia.org/wikipedia/en/e/e8/Samfacejr.jpg',
-        'https://static.turbosquid.com/Preview/2015/02/17__07_42_52/Leg_render_1.jpg5f4dfaef-f39c-43ea-afe2-522e3788b169Original.jpg',
-        'https://media.ottobock.com/_web-site/prosthetics/upper-limb/silicone-cover/images/_35236_dsc0088_169_4c_wb_1_1_hotspot_zoom.jpg'
-    ]
     
     
 
@@ -121,7 +126,6 @@ class Setup extends Component {
           ? <Redirect to={{
             pathname: '/slideshow',
             state: {
-              photos: this.mockPhotos,
               iterationLength: this.state.interval,
               photosFromUser: photosFromUser,
             } 
