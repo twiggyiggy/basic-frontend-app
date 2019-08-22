@@ -2,17 +2,21 @@
 :root {
   --content-height: 90vh;
   --navbar-height: 10vh;
-  --text-color: #060956;
-  --background-color: #ffe8e81a;
+  --text-color: #636479a3;
+  --background-color: #a58bff0d;
   --header-color: #000000;
   --button-color: #ff0c44b8;
-  --radio-buttons-color: rgba(255, 224, 224, 0.34);
-  --radio-buttons-text-color: #400144a8;
-  --radio-buttons-color-checked: #e20101;
+  --radio-buttons-color: rgb(255, 255, 255);
+  --radio-buttons-text-color: #400144;
+  --radio-buttons-color-checked: #ff0c44b8;
   --radio-buttons-text-color-checked: white;
   --link-color: #00144a;
   --link-visited: #ff3a8ca1;
   --logout-color: #ff3a8ca1;
+}
+
+body {
+  background-color: var(--background-color);
 }
 
 h1 {
