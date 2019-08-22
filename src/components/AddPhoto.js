@@ -3,8 +3,6 @@ import apiService from '../services/api-service.js';
 import {Redirect} from 'react-router-dom';
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
-// import FilePlusIcon from '../file-plus-pink.png';
-import PlaceholderImage from '../placeholder-image.png';
 
 
 
@@ -14,7 +12,6 @@ class AddPhoto extends Component {
     category: '',
     isUploading: false,
     progress: 0,
-    // hasUserUploadedPhoto: false,
   }
 
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
@@ -47,7 +44,8 @@ class AddPhoto extends Component {
   }
 
   handleSubmit = (event) => {
-    const { imageUrl, category } = this.state;    
+    const { imageUrl, category } = this.state;
+    // console.log('imageUrl: ', imageUrl)
     event.preventDefault();
     apiService.addOnePhoto({
       imageUrl,
@@ -58,16 +56,7 @@ class AddPhoto extends Component {
     })
     .catch(error => console.log(error))
   }
-
-  // choosePhoto = () => {
-    //   this.setState({
-      //     hasUserUploadedPhoto: true,
-      //   })
-      // }
-      
-      // <img src={FilePlusIcon} alt='file upload icon' className='file-icon'/>
-        // {if(!hasUserUploadedPhoto) {
-        //   return <img src={PlaceholderImage} alt='your placeholder' className='placeholder-image'/>}}
+  
 
   render() {
     const { imageUrl, category, redirect, isUploading, progress } = this.state;
@@ -86,7 +75,6 @@ class AddPhoto extends Component {
             onUploadError={this.handleUploadError}
             onUploadSuccess={this.handleUploadSuccess}
             onProgress={this.handleProgress}
-            onChange={this.choosePhoto}
           />
           
           <select name='category' onChange={this.handleChange} value={category} id='category'>
