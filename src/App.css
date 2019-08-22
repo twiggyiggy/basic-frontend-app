@@ -48,6 +48,10 @@ button {
   background-color: var(--button-color);
 }
 
+select#category, input#username, input#password, input#email {
+  background-color: white;
+}
+
 li {
   color: var(--logout-color)
 }
@@ -65,9 +69,12 @@ h2 {
 
 h3 {
   font-weight: bold;
-  font-size: 2.1rem;
+  font-size: 1.8rem;
 }
 
+p {
+  font-size: 1.3em
+}
 
 
 /* APP */
@@ -123,6 +130,7 @@ nav img {
 .auth-form {
   display: flex;
   flex-direction: column;
+  width: 12.2em;
 }
 
 .auth-form header {
@@ -133,7 +141,7 @@ nav img {
 
 .auth-form label {
   font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  font-size: 1em;
+  font-size: 1.3em;
   font-weight: 300;
   text-align: center;
 }
@@ -146,6 +154,7 @@ nav img {
   margin-top: 1.3em;
   margin-bottom: 1.5em;
 }
+
 
 /* HOME  */
 
@@ -253,7 +262,7 @@ nav img {
 
 .gallery-container label {
   font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  font-size: 1em;
+  font-size: 1.4em;
   font-weight: 300;
   text-align: center;
 }
