@@ -2,99 +2,111 @@ import React, { Component } from 'react'
 import Navbar from '../components/Navbar';
 
 export class Slideshow extends Component {
-    isIterationRunning;
-    timeIterationStarted; timeElapsedInIteration;
-    timePlayCycleStarted;
-    intervalOfNextPlayCycle;
-    hasTimerBeenPausedLastCycle;
-    timer;
-
-
-    // vvv this should be removed once Slideshow starts receiving props.photos and props.iterationLength
-    // mockState = {
-    //     photos: this.photos,
-    //     currentPhotoIndex: 0,
-        
-    //     iterationLength: 2000,
-        
-    //     playing: true
-    // }
-
-
-    // vvv this should be uncommented once Slideshow starts receiving props.photos and props.iterationLength
-
-        // console.log(photos)
-        // console.log(iterationLength)
+    
     state = {
         photos: this.props.location.state.photosFromUser,
-        iterationLength: this.props.location.state.iterationLength,
+        cycleLength: this.props.location.state.iterationLength/1000,
+        secondsLeftInCycle: this.props.location.state.iterationLength/1000,
         currentPhotoIndex: 0,
-        playing: true
+        maxPhotoIndex: this.props.location.state.photosFromUser.length-1,
+        playing: true,
+        finished: false
     }
-    
-    componentWillUnmount = () => clearInterval(this.timer)
 
-    play = () => {
-        this.timePlayCycleStarted = new Date();
-        this.hasTimerBeenPausedLastCycle = false;
-        if (this.timer) clearInterval(this.timer);
-        this.setTimer();
+    componentDidMount = () => {
+        this.startTimer();
     }
     
-    setTimer = () => {
-        this.timer = setInterval(
-            () => {
-                this.intervalOfNextPlayCycle = this.state.iterationLength
-                this.startNextIteration()
-            },
-            this.intervalOfNextPlayCycle
-            );
-    }
-    
-    startNextIteration = () => {
-        this.timeElapsedInIteration = 0;
-        this.timeIterationStarted = new Date();
-        this.showNextPhoto();
-    }
-        
-    showNextPhoto = () => {
-        let nextPhotoIndex = this.state.currentPhotoIndex+1;
-        if (nextPhotoIndex >= this.state.photos.length) {
-            nextPhotoIndex = 0
+    componentDidUpdate = () => {
+        const {secondsLeftInCycle} = this.state;
+        if (secondsLeftInCycle === 0) {
+            this.startNextCycle();
         }
+    }
+
+    componentWillUnmount = () => {
+        this.stopTimer();
+    }
+    
+    startTimer = () => {
+        console.log('hello')
+        this.timer = setInterval(
+            () => this.tick(),
+            1000
+        )
+    }
+
+    stopTimer = () => {
+        clearInterval(this.timer)
+    }
+
+    tick = () => {
+        const {secondsLeftInCycle} = this.state;
         this.setState({
-            currentPhotoIndex: nextPhotoIndex
+            secondsLeftInCycle: secondsLeftInCycle-1
         })
     }
-    
-    showPreviousPhoto = () => {
-        let previousPhotoIndex = this.state.currentPhotoIndex-1;
-        if (previousPhotoIndex < 0) {
-            previousPhotoIndex = this.state.photos.length-1
+
+    startNextCycle = () => {
+        let {cycleLength, currentPhotoIndex, maxPhotoIndex} = this.state;
+        if (currentPhotoIndex === maxPhotoIndex) {
+            this.setState({finished: true})
+        } else {
+            currentPhotoIndex++
         }
         this.setState({
-            currentPhotoIndex: previousPhotoIndex
+            currentPhotoIndex: currentPhotoIndex,
+            secondsLeftInCycle: cycleLength
+        })
+    }
+
+    startPreviousCycle = () => {
+        let {cycleLength, currentPhotoIndex} = this.state;
+        if (currentPhotoIndex !== 0) {
+            this.setState({
+                currentPhotoIndex: currentPhotoIndex-1,
+                secondsLeftInCycle: cycleLength
+            })
+        }
+    }
+
+    restartSlideshow = () => {
+        this.setState({
+            currentPhotoIndex: 0,
+            secondsLeftInCycle: this.state.cycleLength,
+            finished: false
         })
     }
 
     togglePause = () => {
         if (this.state.playing) {
-            clearInterval(this.timer)
-            this.hasTimerBeenPausedLastCycle = true;
-            const endOfPlayCycle = new Date();
-            const timeElapsedThisPlayCycle = endOfPlayCycle - this.timePlayCycleStarted;
-            this.timeElapsedInIteration += timeElapsedThisPlayCycle;
-            this.intervalOfNextPlayCycle = this.state.iterationLength - this.timeElapsedInIteration;
+            this.stopTimer()
             this.setState({
                 playing: false
             })
         } else {
+            this.startTimer()
             this.setState({
                 playing: true
             })
         }
     }
 
+    displayTimeRemaining = () => {
+        const {secondsLeftInCycle} = this.state;
+        let minutes = Math.floor(secondsLeftInCycle/60);
+        let seconds = secondsLeftInCycle % 60
+        minutes = this.padToTwoDigits(minutes);
+        seconds = this.padToTwoDigits(seconds);
+        return <>  {minutes}:{seconds}</>
+    }
+
+    padToTwoDigits = (number) => {
+        return number < 10
+            ? '0' + number.toString()
+            : number
+    }
+    
     showPhotoAtIndex (index) {
         return <img 
             src={this.state.photos[index]} 
@@ -102,22 +114,47 @@ export class Slideshow extends Component {
         />
     }
 
+    slideshow = () =>
+        <div className="slide-show-container">
+            <div className="slide-show-photo-container">
+                {this.showPhotoAtIndex(this.state.currentPhotoIndex)}
+            </div>
+            <div className="slide-show-counter">
+                {this.displayTimeRemaining()}
+            </div>
+            <div className="slide-show-controls">
+                <button onClick={this.startPreviousCycle}>⟸</button>
+                <button onClick={this.togglePause}>||</button>
+                <button onClick={this.startNextCycle}>⟹</button>
+            </div>
+        </div>
+
+    endScreen = () =>
+        <div className="slide-show-endscreen">
+            <h1>Finished!</h1>
+            <button onClick={this.restartSlideshow}>One more time?</button>
+            <section>
+                    {
+                        this.state.photos.map(photo => {
+                        return (
+                            <article key={photo}>
+                                <img src={photo} alt='users file' />
+                            </article>
+                        )
+                        })
+                    }
+            </section>
+        </div>
+    
     render() {
-        if (this.state.playing) this.play();
+        const {finished} = this.state;
         return (
             <>
-                <div className="slide-show-container">
-                    <div className="slide-show-photo-container">
-                        {
-                            this.showPhotoAtIndex(this.state.currentPhotoIndex)
-                        }
-                    </div>
-                    <div className="slide-show-controls">
-                        <button onClick={this.showPreviousPhoto}>⟸</button>
-                        <button onClick={this.togglePause}>||</button>
-                        <button onClick={this.showNextPhoto}>⟹</button>
-                    </div>
-                </div>
+                {
+                    finished
+                    ? this.endScreen()
+                    : this.slideshow()
+                }
                 <Navbar/>
             </>
         )

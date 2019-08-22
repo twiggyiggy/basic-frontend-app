@@ -32,10 +32,6 @@ class Setup extends Component {
       .filter(photoObj => photoObj.category === this.state.category || this.state.category === 'all')
       .map(photoObj => photoObj.imageUrl)
     
-    this.setState({
-      wasFormSubmitted: true,
-      photosFromUser: userPhotoUrls,
-    })
     if (userPhotoUrls.length === 0) {
       console.error("userPhotoUrls is empty")
     } else {
@@ -56,6 +52,10 @@ class Setup extends Component {
   
   setUpForm =
     <form onSubmit={this.handleSubmit} className="setup-container">
+      <header>
+        <h1>Bozo</h1>
+      </header>
+      <h2>Session setup:</h2> 
       <h3>What do you want to sketch?</h3>
       <div>
         <input type='radio' id='hands' name='category' value='hands' onChange={this.handleChange}/>
@@ -116,7 +116,6 @@ class Setup extends Component {
     const { photosFromUser } = this.state;
     return (
       <>
-        <h2>Session setup:</h2> 
         {
           this.state.wasFormSubmitted
           ? <Redirect to={{
