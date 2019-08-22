@@ -1,4 +1,6 @@
 /* COLORS */
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC&display=swap');
+
 :root {
   --content-height: 90vh;
   --navbar-height: 10vh;
