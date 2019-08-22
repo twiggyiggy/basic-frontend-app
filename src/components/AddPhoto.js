@@ -31,7 +31,7 @@ class AddPhoto extends Component {
       .child(filename)
       .getDownloadURL()
       .then(url => {
-        console.log(url)
+        console.log("url: ", url)
         this.setState({ imageUrl: url })
       });
   };
@@ -57,7 +57,6 @@ class AddPhoto extends Component {
     .catch(error => console.log(error))
   }
   
-
   render() {
     const { imageUrl, category, redirect, isUploading, progress } = this.state;
     return (
@@ -85,7 +84,7 @@ class AddPhoto extends Component {
             <option value='figure'>Figure</option>
             <option value='other'>Other</option>
           </select>
-          <button type='submit'>Add new photo</button>
+          <button type='submit'>Add photo</button>
         </form>
         {redirect ? <Redirect to='/apps' /> : null}
       </div>
