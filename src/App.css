@@ -3,7 +3,7 @@
   --content-height: 90vh;
   --navbar-height: 10vh;
   --text-color: #636479a3;
-  --background-color: #a58bff0d;
+  --background-color: #8b9cff3d;
   --header-color: #000000;
   --button-color: #ff0c44b8;
   --radio-buttons-color: rgb(255, 255, 255);
@@ -349,6 +349,10 @@ nav img {
   margin-top: 4vh;
   margin-bottom: 0.5em;
   text-align: center;
+}
+
+.setup-container h3 {
+  margin-bottom: 0.3em;
 }
 
 .setup-container h1 {
