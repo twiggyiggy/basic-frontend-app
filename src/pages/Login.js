@@ -35,7 +35,7 @@ class Login extends Component {
           <label htmlFor='username' >Username:</label>
           <input required id='username' type='text' name='username' value={username} onChange={this.handleChange}/>
           <label htmlFor='password'>Password:</label>
-          <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
+          <input required id='password' type='password' name='password' value={password} onChange={this.handleChange} />
           <input type='submit' value='Login' />
         </form>
 

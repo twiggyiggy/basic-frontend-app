@@ -14,7 +14,7 @@ class AddPhoto extends Component {
     category: '',
     isUploading: false,
     progress: 0,
-    hasUserUploadedPhoto: false,
+    // hasUserUploadedPhoto: false,
   }
 
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
@@ -59,16 +59,18 @@ class AddPhoto extends Component {
     .catch(error => console.log(error))
   }
 
-  choosePhoto = () => {
-    this.setState({
-      hasUserUploadedPhoto: true,
-    })
-  }
-
-  // <img src={FilePlusIcon} alt='file upload icon' className='file-icon'/>
+  // choosePhoto = () => {
+    //   this.setState({
+      //     hasUserUploadedPhoto: true,
+      //   })
+      // }
+      
+      // <img src={FilePlusIcon} alt='file upload icon' className='file-icon'/>
+        // {if(!hasUserUploadedPhoto) {
+        //   return <img src={PlaceholderImage} alt='your placeholder' className='placeholder-image'/>}}
 
   render() {
-    const { imageUrl, category, redirect, isUploading, progress, hasUserUploadedPhoto } = this.state;
+    const { imageUrl, category, redirect, isUploading, progress } = this.state;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -87,8 +89,6 @@ class AddPhoto extends Component {
             onChange={this.choosePhoto}
           />
           
-          {if(!hasUserUploadedPhoto) {
-            return <img src={PlaceholderImage} alt='your placeholder' className='placeholder-image'/>}}
           <select name='category' onChange={this.handleChange} value={category} id='category'>
             <option value=''>Set category</option>
             <option value='hands'>Hands</option>

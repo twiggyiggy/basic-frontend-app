@@ -25,8 +25,8 @@ export class UserPhotos extends Component {
                     {userPhotos.length > 0 ? userPhotos.map(photo => {
                         if (photo) 
                         return (
-                            <section className="user-photo-card">
-                                <article key={photo._id} className='photo-container'>
+                            <section className="user-photo-card" key={photo._id}>
+                                <article className='photo-container'>
                                     <img src={photo.imageUrl} alt='users file' />
                                 </article>
                                 <article className="user-photos-control">

@@ -29,7 +29,6 @@ export class Slideshow extends Component {
     }
     
     startTimer = () => {
-        console.log('hello')
         this.timer = setInterval(
             () => this.tick(),
             1000
