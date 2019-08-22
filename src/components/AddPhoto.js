@@ -3,7 +3,7 @@ import apiService from '../services/api-service.js';
 import {Redirect} from 'react-router-dom';
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
-import FilePlusIcon from '../file-plus-pink.png';
+// import FilePlusIcon from '../file-plus-pink.png';
 
 
 
@@ -57,12 +57,14 @@ class AddPhoto extends Component {
     .catch(error => console.log(error))
   }
 
+  // <img src={FilePlusIcon} alt='file upload icon' className='file-icon'/>
+
   render() {
     const { imageUrl, category, redirect, isUploading, progress } = this.state;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-        <label htmlFor='file'><img src={FilePlusIcon} alt='file upload icon' className='file-icon'/></label>
+        <label htmlFor='file'>Add a photo to your set:</label>
           {isUploading && <p>Progress: {progress}</p>}
           {imageUrl && <img src={imageUrl} alt='name'/>}
           <FileUploader
@@ -74,7 +76,7 @@ class AddPhoto extends Component {
             onUploadError={this.handleUploadError}
             onUploadSuccess={this.handleUploadSuccess}
             onProgress={this.handleProgress}
-            className='upload'
+            // className='upload'
           />
           <select name='category' onChange={this.handleChange} value={category} id='category'>
             <option value=''>Set category</option>
