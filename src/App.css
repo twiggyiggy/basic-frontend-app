@@ -168,7 +168,7 @@ nav img {
   margin-bottom: 0.2em;
 }
 
-.home-container h4 {
+.home-container h2 {
   text-align: center;
   margin-bottom: 0.5em;
   margin-top: 1.2em;
@@ -177,6 +177,8 @@ nav img {
 .home-container section {
   margin-bottom: 1em;
   justify-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .home-container button {
@@ -194,15 +196,15 @@ nav img {
   margin-top: 0;
   text-justify: inter-word;
   margin-left: 10vw;
+  font-size: 1.3em;
   margin-right: 10vw;
-  margin-bottom: 1.2em;
+  margin-bottom: 2em;
 }
 
 .home-image-container {
   display: flex;
   align-items: center;
   height: 50vh;
-  width: 100vw;
   justify-content: center;
 }
 
