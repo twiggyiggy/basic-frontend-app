@@ -49,12 +49,6 @@ li {
 }
 
 /* WEIRD */
-.upload {
-  opacity: 0;
-  position: fixed;
-  top: 15vh;
-  width: 8vh;
-}
 
 .file-icon {
   height: 4.5em;
@@ -330,6 +324,12 @@ nav img {
   width: 2em;
   margin-left: 1em;
   margin-right: 1em;
+}
+
+.placeholder-image {
+  height: auto;
+  width: 10em;
+  margin-bottom: 1em;
 }
 
 /* .image-container {

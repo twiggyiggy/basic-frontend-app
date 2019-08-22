@@ -8,8 +8,6 @@ class ApiService {
         })
     }
 
-    
-
     getUserPhotos = async (user) => {
         const userId = user._id // method accepts user object as arg - with _id property to be extracted
         const userPhotos = await this.api.get(`photos/${userId}`) // using axios, request 
@@ -22,10 +20,15 @@ class ApiService {
         .then(response => response);
       }
       
-      removePhoto(photoId) {
-          return this.api.delete(`photos/${photoId}/delete`)
-          .then(response => response)
-        }
+    removePhoto(photoId) {
+        return this.api.delete(`photos/${photoId}/delete`)
+        .then(response => response)
+    }
+
+    updatePhoto(photoId) {
+        return this.api.put(`/photos/${photoId}/edit`)
+        .then(response => response)
+    }
 }
         
 const apiService = new ApiService();

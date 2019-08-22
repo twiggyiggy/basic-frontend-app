@@ -11,6 +11,7 @@ class Gallery extends React.Component {
   state = {
     userPhotos: []
   }
+  
 
   getGalleryPhotos = async () => {
     const user = await authService.getCurrentUser()

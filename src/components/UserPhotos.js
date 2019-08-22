@@ -12,6 +12,11 @@ export class UserPhotos extends Component {
         .then(()=> this.props.getUpdatedGalleryPhotos())
     }
 
+    handleUpdate = (photoId) => {
+        apiService.updatePhoto(photoId)
+        .then(()=>{})
+    }
+
     render() {
         const {userPhotos} = this.props;
         return (
