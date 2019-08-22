@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withAuth from '../components/withAuth';
+import Header from '../components/Header.js'
+
 
 class Login extends Component {
   state = {
@@ -29,9 +31,7 @@ class Login extends Component {
     return (
       <>
         <form onSubmit={this.handleFormSubmit} className="auth-form">
-          <header>
-            <h1>Bozo</h1>
-          </header>
+          <Header/>
           <label htmlFor='username' >Username:</label>
           <input id='username' type='text' name='username' value={username} onChange={this.handleChange}/>
           <label htmlFor='password'>Password:</label>

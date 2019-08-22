@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
 // import milligram from 'milligram'
+import BozoLogo from '../icons/bozo-logo.png'
+
 
 export default class Home extends Component {
 
@@ -8,6 +10,7 @@ export default class Home extends Component {
     return (
       <div className="home-container">
         <header>
+          <img src={BozoLogo} alt="bozo logo"/>
           <h1>Bozo</h1>
           <section>
             <Link to='/login'>

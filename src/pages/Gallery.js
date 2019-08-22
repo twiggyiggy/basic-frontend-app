@@ -4,6 +4,8 @@ import UserPhotos from '../components/UserPhotos'
 import AddPhoto from '../components/AddPhoto';
 import apiService from '../services/api-service.js'
 import authService from '../services/auth-service'
+import Header from '../components/Header.js'
+
 
 class Gallery extends React.Component {
   state = {
@@ -34,9 +36,7 @@ class Gallery extends React.Component {
 
     return (
       <div className="gallery-container">
-        <header>
-         <h1>Bozo</h1>
-        </header>
+        <Header/>
         <AddPhoto getUpdatedGalleryPhotos={this.getGalleryPhotos} />
         <UserPhotos getUpdatedGalleryPhotos={this.getGalleryPhotos} userPhotos={userPhotos}/>
         <Navbar/>

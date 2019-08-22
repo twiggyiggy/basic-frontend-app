@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom' 
 
 import Navbar from '../components/Navbar.js';
+import Header from '../components/Header.js'
 import authService from '../services/auth-service.js';
 import apiService from '../services/api-service.js';
 
@@ -52,9 +53,7 @@ class Setup extends Component {
   
   setUpForm =
     <form onSubmit={this.handleSubmit} className="setup-container">
-      <header>
-        <h1>Bozo</h1>
-      </header>
+      <Header/>
       <h2>Session setup:</h2> 
       <h3>What do you want to sketch?</h3>
       <div>

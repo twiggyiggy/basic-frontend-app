@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import withAuth from '../components/withAuth.js';
+import Header from '../components/Header.js';
 
 class Signup extends Component {
 
@@ -47,9 +48,7 @@ class Signup extends Component {
       return (
       <>
         <form onSubmit={this.handleFormSubmit} className="auth-form">
-          <header>
-            <h1>Bozo</h1>
-          </header>
+          <Header/>
           <label htmlFor='username'>Username:</label>
           <input id='username' type='text' name='username' value={username} onChange={this.handleChange}/>
           <label htmlFor='email'>Email:</label>

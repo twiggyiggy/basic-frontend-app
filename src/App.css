@@ -4,7 +4,7 @@
   --navbar-height: 10vh;
   --text-color: #060956;
   --background-color: #ffe8e81a;
-  --header-color: #ff207d26;
+  --header-color: #000000;
   --button-color: #ff0c44b8;
   --radio-buttons-color: rgba(255, 224, 224, 0.34);
   --radio-buttons-text-color: #400144a8;
@@ -70,6 +70,12 @@ h3 {
 
 .app-container a {
   /**/
+}
+
+/* HEADER */
+
+.bozo-header img {
+  height: 4em
 }
 
 /* NAVBAR */
