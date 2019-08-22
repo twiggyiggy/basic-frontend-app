@@ -1,12 +1,41 @@
 import React, { Component } from 'react';
 import apiService from '../services/api-service.js';
 import {Redirect} from 'react-router-dom';
+import firebase from "firebase";
+import FileUploader from "react-firebase-file-uploader";
+import FilePlusIcon from '../file-plus-pink.png';
+
+
 
 class AddPhoto extends Component {
   state = {
     imageUrl: '',
     category: '',
+    isUploading: false,
+    progress: 0,
   }
+
+  handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
+
+  handleProgress = progress => this.setState({ progress });
+
+  handleUploadError = error => {
+    this.setState({ isUploading: false });
+    console.error(error);
+  };
+
+  handleUploadSuccess = filename => {
+    this.setState({ progress: 100, isUploading: false });
+    firebase
+      .storage()
+      .ref("images")
+      .child(filename)
+      .getDownloadURL()
+      .then(url => {
+        console.log(url)
+        this.setState({ imageUrl: url })
+      });
+  };
 
   handleChange = (event) => {
     const { name, value } = event.target
@@ -28,15 +57,25 @@ class AddPhoto extends Component {
     .catch(error => console.log(error))
   }
 
-
   render() {
-    const { image, category, redirect } = this.state;
+    const { imageUrl, category, redirect, isUploading, progress } = this.state;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          {/* <label htmlFor='imageUrl'>Enter image URL</label> */}
-          <input type='text' id='imageUrl' onChange={this.handleChange} value={image} name='imageUrl' placeholder="Enter image URL"/>
-          {/* <label htmlFor='category'>Set category</label> */}
+        <label htmlFor='file'><img src={FilePlusIcon} alt='file upload icon' className='file-icon'/></label>
+          {isUploading && <p>Progress: {progress}</p>}
+          {imageUrl && <img src={imageUrl} alt='name'/>}
+          <FileUploader
+            accept="image/*"
+            name="file"
+            randomizeFilename
+            storageRef={firebase.storage().ref("images")}
+            onUploadStart={this.handleUploadStart}
+            onUploadError={this.handleUploadError}
+            onUploadSuccess={this.handleUploadSuccess}
+            onProgress={this.handleProgress}
+            className='upload'
+          />
           <select name='category' onChange={this.handleChange} value={category} id='category'>
             <option value=''>Set category</option>
             <option value='hands'>Hands</option>
