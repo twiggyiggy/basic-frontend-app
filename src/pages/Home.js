@@ -37,7 +37,7 @@ export default class Home extends Component {
           <h2>Create custom training sessions</h2>
           <p>
             Sharpen your abilities with custom study sessions, setting
-            a comfortable time limit for each reference photo
+            a comfortable time limit for each reference photo,
             and when you feel like you've got it: turn up the tempo!
           </p>
           <img src="https://idrawgirls.com/tutorials/wp-content/uploads/2011/11/gesture-drawing-with-pen.jpg" alt="sketches of women"/>
