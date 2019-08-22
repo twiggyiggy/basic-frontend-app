@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import apiService from '../services/api-service.js'
 // import authService from '../services/auth-service';
 import withAuth from '../components/withAuth';
+import EditIcon from '../icons/edit-icon.png';
+import DeleteIcon from '../icons/delete-icon.png'
 
 export class UserPhotos extends Component {
 
@@ -18,12 +20,15 @@ export class UserPhotos extends Component {
                     {userPhotos.length > 0 ? userPhotos.map(photo => {
                         if (photo) 
                         return (
-                            <article key={photo._id} className='photo-container'>
-                                <img src={photo.imageUrl} alt='users file' />
-                                <button onClick={() => {
-                                    this.handleDelete(photo._id)
-                                }}>Delete</button>
-                            </article>
+                            <section className="user-photo-card">
+                                <article key={photo._id} className='photo-container'>
+                                    <img src={photo.imageUrl} alt='users file' />
+                                </article>
+                                <article className="user-photos-control">
+                                    <img src={EditIcon} alt="edit icon"/>
+                                    <img src={DeleteIcon} alt="delete icon" onClick={() => this.handleDelete(photo._id)}/>
+                                </article>
+                            </section>
                         )
                         else return ""
                     }) : <p>Loading...</p>}
