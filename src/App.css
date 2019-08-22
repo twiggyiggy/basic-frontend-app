@@ -412,19 +412,29 @@ nav ul li {
   background-color: var(--button-color);
 }
 
+.slide-show-stopwatch {
+  height: 0.8em
+}
+
+.slide-show-counter {
+  font-size: 1.8em;
+  margin-bottom: 0.5em;
+}
+
 .slide-show-endscreen {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 80vh;
-  width: 40vw;
+  width: 80vw;
 }
 
 .slide-show-endscreen section {
   display: flex;
   flex-direction: row;
-  
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .slide-show-endscreen article {

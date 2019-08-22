@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Navbar from '../components/Navbar';
+import StopWatchIcon from '../icons/001-stopwatch.png'
 
 export class Slideshow extends Component {
     
@@ -98,7 +99,7 @@ export class Slideshow extends Component {
         let seconds = secondsLeftInCycle % 60
         minutes = this.padToTwoDigits(minutes);
         seconds = this.padToTwoDigits(seconds);
-        return <>{minutes}:{seconds}</>
+        return <>  {minutes}:{seconds}</>
     }
 
     padToTwoDigits = (number) => {
@@ -120,6 +121,7 @@ export class Slideshow extends Component {
                 {this.showPhotoAtIndex(this.state.currentPhotoIndex)}
             </div>
             <div className="slide-show-counter">
+                <img src={StopWatchIcon} alt="stopwatch icon" className="slide-show-stopwatch"/>
                 {this.displayTimeRemaining()}
             </div>
             <div className="slide-show-controls">
