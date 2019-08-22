@@ -57,7 +57,7 @@ class Setup extends Component {
       <h2>Session setup:</h2> 
       <h3>What do you want to sketch?</h3>
       <div>
-        <input type='radio' id='hands' name='category' value='hands' onChange={this.handleChange}/>
+        <input required type='radio' id='hands' name='category' value='hands' onChange={this.handleChange}/>
         <label htmlFor='hands'>hands</label>
         
         <input type='radio' id='feet' name='category' value='feet' onChange={this.handleChange}/>
@@ -78,7 +78,7 @@ class Setup extends Component {
 
       <h3>What time interval?</h3>
       <div>
-        <input type='radio' id='30000' name='interval' value='30000' onChange={this.handleChange}/>
+        <input required type='radio' id='30000' name='interval' value='30000' onChange={this.handleChange}/>
         <label htmlFor='30000'>30 seconds</label>
 
         <input type='radio' id='60000' name='interval' value='60000' onChange={this.handleChange}/>
@@ -96,7 +96,7 @@ class Setup extends Component {
 
       <h3>How many images?</h3>
       <div>
-        <input type='radio' id='10' name='numberOfPhotos' value='10' onChange={this.handleChange}/>
+        <input required type='radio' id='10' name='numberOfPhotos' value='10' onChange={this.handleChange}/>
         <label htmlFor='10'>10</label>
 
         <input type='radio' id='15' name='numberOfPhotos' value='15' onChange={this.handleChange}/>
