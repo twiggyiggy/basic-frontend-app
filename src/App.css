@@ -40,6 +40,10 @@ input[type="radio"]:checked + label {
   color: var(--radio-buttons-color-checked)
 }
 
+button {
+  background-color: var(--button-color);
+}
+
 li {
   color: var(--logout-color)
 }
@@ -479,6 +483,11 @@ nav img {
   border-radius: 5px;
   margin: 0.2em;
 
+}
+
+.slide-show-endscreen button {
+  background-color: var(--button-color);
+  border: none
 }
 
 .slide-show-endscreen img {
