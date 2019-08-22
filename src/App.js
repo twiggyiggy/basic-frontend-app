@@ -18,6 +18,15 @@ import './App.css';
 // import Bootstrap from 'bootstrap';
 import 'milligram';
 
+import firebase from "firebase";
+ 
+const config = {
+  apiKey: "AIzaSyAmgiI1S5jB4DqwWtjlZlPz15DzQSGl0rs",
+  authDomain: "bozo-app.firebaseapp.com",
+  storageBucket: "gs://bozo-app.appspot.com/"
+};
+firebase.initializeApp(config);
+
 class App extends Component {
   render() {
     return (
