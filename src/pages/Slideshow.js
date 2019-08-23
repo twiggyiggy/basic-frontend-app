@@ -4,17 +4,24 @@ import Navbar from '../components/Navbar';
 export class Slideshow extends Component {
     
     state = {
-        photos: this.props.location.state.photosFromUser,
-        cycleLength: this.props.location.state.iterationLength/1000,
-        secondsLeftInCycle: this.props.location.state.iterationLength/1000,
+        photos: [],
+        cycleLength: 1,
+        secondsLeftInCycle: 1,
         currentPhotoIndex: 0,
-        maxPhotoIndex: this.props.location.state.photosFromUser.length-1,
+        maxPhotoIndex: 1,
         playing: true,
         finished: false
     }
 
     componentDidMount = () => {
         this.startTimer();
+        console.log('photosFromUser', this.props.location.state.photosFromUser)
+        this.setState({
+            photos: this.props.location.state.photosFromUser,
+            cycleLength: this.props.location.state.iterationLength/1000,
+            secondsLeftInCycle: this.props.location.state.iterationLength/1000,
+            maxPhotoIndex: this.props.location.state.photosFromUser.length-1,
+        })
     }
     
     componentDidUpdate = () => {
